@@ -11,7 +11,7 @@ export default function Navbar() {
 
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
+            setScrolled(window.scrollY > 20); // Trigger earlier for mobile feel
             const sections = document.querySelectorAll("section");
             sections.forEach((section) => {
                 const top = section.offsetTop - 100;
@@ -25,110 +25,125 @@ export default function Navbar() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    // Lock body scroll when menu is open
+    useEffect(() => {
+        if (mobileMenuOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "unset";
+        }
+        return () => { document.body.style.overflow = "unset"; };
+    }, [mobileMenuOpen]);
+
     const navItems = [
-        { name: "Home", href: "#home", icon: <Home size={18} /> },
-        { name: "About", href: "#about", icon: <User size={18} /> },
-        { name: "Skills", href: "#skills", icon: <BookOpen size={18} /> },
-        { name: "Projects", href: "#projects", icon: <Briefcase size={18} /> },
-        { name: "Certifications", href: "#certifications", icon: <Zap size={18} /> },
-        { name: "Contact", href: "#contact", icon: <Terminal size={18} /> },
+        { name: "Home", href: "#home", icon: <Home size={20} /> },
+        { name: "About", href: "#about", icon: <User size={20} /> },
+        { name: "Skills", href: "#skills", icon: <BookOpen size={20} /> },
+        { name: "Projects", href: "#projects", icon: <Briefcase size={20} /> },
+        { name: "Certifications", href: "#certifications", icon: <Zap size={20} /> },
+        { name: "Contact", href: "#contact", icon: <Terminal size={20} /> },
     ];
 
     return (
         <>
-            {/* Desktop Floating Navbar */}
+            {/* Desktop & Mobile Navbar Container */}
             <motion.nav
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.5, type: "spring" }}
-                className={`fixed top-6 left-0 right-0 z-50 flex justify-center hidden md:flex`}
+                className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 transition-all duration-300 ${scrolled ? "bg-[#0B1120]/80 backdrop-blur-xl border-b border-white/10 shadow-lg" : "bg-transparent"
+                    }`}
             >
-                <div className={`
-          relative flex items-center gap-1 px-2 py-2 rounded-full 
-          backdrop-blur-xl border border-white/10 shadow-2xl transition-all duration-300
-          ${scrolled ? "bg-[#0B1120]/80" : "bg-white/[0.03]"}
-        `}>
-                    {/* Active indicator */}
-                    <div className="flex items-center gap-1">
-                        {navItems.map((item) => (
-                            <a
-                                key={item.name}
-                                href={item.href}
-                                onClick={() => setActiveHash(item.href)}
-                                className={`relative flex items-center gap-2 px-5 py-2.5 text-sm font-medium rounded-full transition-all duration-300 z-10 ${activeHash === item.href ? "text-white" : "text-gray-400 hover:text-gray-200"
-                                    }`}
-                            >
-                                {activeHash === item.href && (
-                                    <motion.span
-                                        layoutId="activePill"
-                                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                                        className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-600/20 border border-cyan-500/30 rounded-full backdrop-blur-md shadow-[0_0_20px_rgba(6,182,212,0.3)] -z-10"
-                                    />
-                                )}
-                                {item.icon}
-                                <span className="font-semibold tracking-wide">{item.name}</span>
-                            </a>
-                        ))}
-                    </div>
-                </div>
-            </motion.nav>
+                {/* Logo / Name */}
+                <a href="#home" className="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+                    <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold">D</span>
+                    <span className="hidden sm:block">Derlin Shaju</span>
+                </a>
 
-            {/* Mobile Bottom Bar (For easy thumb access) */}
-            <motion.nav
-                initial={{ y: 100 }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.5, type: "spring" }}
-                className={`fixed bottom-0 left-0 right-0 z-50 md:hidden bg-[#0B1120]/80 backdrop-blur-xl border-t border-white/10 p-4 safe-area-pb`}
-            >
-                <div className="flex justify-around items-center">
-                    {navItems.slice(0, 5).map((item) => (
+                {/* Desktop Menu */}
+                <div className="hidden md:flex items-center gap-1 p-1 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-md">
+                    {navItems.map((item) => (
                         <a
                             key={item.name}
                             href={item.href}
                             onClick={() => setActiveHash(item.href)}
-                            className={`flex flex-col items-center gap-1 p-2 rounded-xl transition-all ${activeHash === item.href ? "text-cyan-400 bg-white/5" : "text-gray-500"
+                            className={`relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${activeHash === item.href ? "text-white" : "text-gray-400 hover:text-white"
                                 }`}
                         >
-                            {item.icon}
-                            <span className="text-[10px] font-medium">{item.name}</span>
+                            {activeHash === item.href && (
+                                <motion.span
+                                    layoutId="activePill"
+                                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                    className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-600/20 border border-cyan-500/30 rounded-full -z-10"
+                                />
+                            )}
+                            {item.name}
                         </a>
                     ))}
-                    {/* More Menu for last item or extras */}
-                    <button
-                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                        className={`flex flex-col items-center gap-1 p-2 rounded-xl transition-all ${mobileMenuOpen ? "text-white" : "text-gray-500"}`}
-                    >
-                        <Menu size={18} />
-                        <span className="text-[10px] font-medium">More</span>
-                    </button>
                 </div>
+
+                {/* Mobile Menu Toggle */}
+                <button
+                    onClick={() => setMobileMenuOpen(true)}
+                    className="md:hidden p-2 text-white bg-white/5 rounded-lg border border-white/10 active:scale-95 transition-all"
+                    aria-label="Open Menu"
+                >
+                    <Menu size={24} />
+                </button>
             </motion.nav>
 
-            {/* Mobile Full Screen Menu Overlay acting as "More" */}
+            {/* Mobile Full Screen Menu Overlay */}
             <AnimatePresence>
                 {mobileMenuOpen && (
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 20 }}
-                        className="fixed inset-0 z-40 bg-[#0B1120]/95 backdrop-blur-2xl flex items-center justify-center md:hidden"
-                        onClick={() => setMobileMenuOpen(false)}
+                        initial={{ opacity: 0, x: "100%" }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: "100%" }}
+                        transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                        className="fixed inset-0 z-[60] bg-[#0B1120] flex flex-col md:hidden"
                     >
-                        <div className="grid grid-cols-2 gap-6 p-8 w-full max-w-sm">
-                            {navItems.map((item) => (
-                                <a
+                        {/* Header */}
+                        <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
+                            <span className="text-xl font-bold text-white">Menu</span>
+                            <button
+                                onClick={() => setMobileMenuOpen(false)}
+                                className="p-2 text-white bg-white/5 rounded-lg border border-white/10 active:scale-95 transition-all"
+                                aria-label="Close Menu"
+                            >
+                                <X size={24} />
+                            </button>
+                        </div>
+
+                        {/* Menu Items */}
+                        <div className="flex-1 overflow-y-auto py-8 px-6 flex flex-col gap-4">
+                            {navItems.map((item, index) => (
+                                <motion.a
+                                    initial={{ opacity: 0, x: 20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: index * 0.05 }}
                                     key={item.name}
                                     href={item.href}
-                                    className="flex flex-col items-center justify-center bg-white/5 border border-white/10 p-6 rounded-2xl active:scale-95 transition-all"
+                                    onClick={() => {
+                                        setActiveHash(item.href);
+                                        setMobileMenuOpen(false);
+                                    }}
+                                    className={`flex items-center gap-4 p-4 rounded-xl border transition-all ${activeHash === item.href
+                                            ? "bg-gradient-to-r from-cyan-500/20 to-blue-600/20 border-cyan-500/30 text-white"
+                                            : "bg-white/5 border-white/5 text-gray-400 hover:text-white"
+                                        }`}
                                 >
-                                    <div className="text-cyan-400 mb-3 transform scale-150">{item.icon}</div>
-                                    <span className="text-white font-medium text-lg">{item.name}</span>
-                                </a>
+                                    <div className={`p-2 rounded-lg ${activeHash === item.href ? "bg-cyan-500 text-white" : "bg-white/5 text-gray-400"}`}>
+                                        {item.icon}
+                                    </div>
+                                    <span className="text-lg font-medium">{item.name}</span>
+                                </motion.a>
                             ))}
                         </div>
-                        <button className="absolute top-6 right-6 text-white bg-white/10 p-2 rounded-full">
-                            <X size={24} />
-                        </button>
+                        
+                        {/* Footer decorative */}
+                        <div className="p-6 text-center text-gray-500 text-xs uppercase tracking-widest border-t border-white/5">
+                            Derlin Shaju &copy; 2026
+                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>

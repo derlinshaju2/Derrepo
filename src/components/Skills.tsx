@@ -60,8 +60,8 @@ export default function Skills() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1, type: "spring", stiffness: 50 }}
-                            whileHover={{ scale: 1.05, rotateX: 5, rotateY: 5 }}
-                            className="group relative p-6 rounded-3xl backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] shadow-2xl overflow-hidden hover:shadow-cyan-500/20 transition-all duration-500"
+                            whileHover={{ scale: 1.02 }}
+                            className="group relative p-6 rounded-3xl backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] shadow-2xl overflow-hidden hover:shadow-cyan-500/20 transition-all duration-500 w-full"
                         >
                             {/* Inner Glow */}
                             <div className={`absolute inset-0 bg-gradient-to-br ${skill.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
@@ -88,7 +88,7 @@ export default function Skills() {
                 </div>
 
                 {/* Soft Skills - Glass Pills */}
-                <div className="grid grid-cols-2 gap-3 md:flex md:flex-wrap md:justify-center md:gap-6">
+                <div className="flex flex-wrap gap-3 justify-center md:gap-6">
                     {softSkills.map((skill, index) => (
                         <motion.div
                             key={index}
@@ -96,9 +96,8 @@ export default function Skills() {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.05 }}
-                            whileHover={{ scale: 1.1, backgroundColor: "rgba(255,255,255,0.1)" }}
-                            className={`flex items-center justify-center md:justify-start gap-2 md:gap-3 px-4 py-3 md:px-6 md:py-3 rounded-full border border-white/10 bg-white/[0.02] backdrop-blur-md cursor-default hover:border-cyan-500/30 transition-all shadow-lg ${index === softSkills.length - 1 && softSkills.length % 2 !== 0 ? "col-span-2" : ""
-                                }`}
+                            whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
+                            className="flex items-center gap-2 md:gap-3 px-4 py-3 md:px-6 md:py-3 rounded-full border border-white/10 bg-white/[0.02] backdrop-blur-md cursor-default hover:border-cyan-500/30 transition-all shadow-lg min-w-[max-content]"
                         >
                             <span className="text-cyan-400 scale-90 md:scale-100">{skill.icon}</span>
                             <span className="text-gray-300 font-medium text-sm md:text-base whitespace-nowrap">{skill.name}</span>

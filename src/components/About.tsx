@@ -44,12 +44,12 @@ export default function About() {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4 mt-8 md:mt-10">
-                        <div className="flex flex-col items-center p-6 bg-white/5 rounded-2xl border border-white/10">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 md:mt-10">
+                        <div className="flex flex-col items-center p-6 bg-white/5 rounded-2xl border border-white/10 w-full">
                             <span className="text-3xl font-bold text-white">4+</span>
                             <span className="text-xs text-gray-500 uppercase tracking-wider mt-1">Years Coding</span>
                         </div>
-                        <div className="flex flex-col items-center p-6 bg-white/5 rounded-2xl border border-white/10">
+                        <div className="flex flex-col items-center p-6 bg-white/5 rounded-2xl border border-white/10 w-full">
                             <span className="text-3xl font-bold text-white">10+</span>
                             <span className="text-xs text-gray-500 uppercase tracking-wider mt-1">Projects</span>
                         </div>

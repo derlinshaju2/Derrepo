@@ -86,7 +86,7 @@ export default function Contact() {
                                 <input
                                     type="text"
                                     placeholder="Your Name"
-                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 focus:bg-white/10 transition-all duration-300"
+                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-white placeholder-gray-500 text-base focus:outline-none focus:border-cyan-500/50 focus:bg-white/10 transition-all duration-300"
                                 />
                                 <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-cyan-500 to-blue-500 group-focus-within:w-full transition-all duration-500" />
                             </div>
@@ -95,7 +95,7 @@ export default function Contact() {
                                 <input
                                     type="email"
                                     placeholder="Your Email"
-                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 focus:bg-white/10 transition-all duration-300"
+                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-white placeholder-gray-500 text-base focus:outline-none focus:border-cyan-500/50 focus:bg-white/10 transition-all duration-300"
                                 />
                                 <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-cyan-500 to-blue-500 group-focus-within:w-full transition-all duration-500" />
                             </div>
@@ -104,7 +104,7 @@ export default function Contact() {
                                 <textarea
                                     rows={4}
                                     placeholder="Tell me about your project..."
-                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 focus:bg-white/10 transition-all duration-300 resize-none"
+                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-white placeholder-gray-500 text-base focus:outline-none focus:border-cyan-500/50 focus:bg-white/10 transition-all duration-300 resize-none"
                                 ></textarea>
                                 <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-cyan-500 to-blue-500 group-focus-within:w-full transition-all duration-500" />
                             </div>

@@ -61,52 +61,52 @@ export default function Hero() {
             />
 
             {/* Main Content Container */}
-            <div className="max-w-md mx-auto md:max-w-7xl md:px-6 grid grid-cols-1 md:grid-cols-8 lg:grid-cols-12 gap-8 md:gap-x-6 md:gap-y-12 items-center relative z-10 w-full">
+            <div className="max-w-md mx-auto md:max-w-7xl md:px-6 grid grid-cols-1 md:grid-cols-8 lg:grid-cols-12 gap-6 md:gap-x-6 md:gap-y-12 items-center relative z-10 w-full">
                 {/* Left Content - Typography & CTA */}
                 <motion.div
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="col-span-1 md:col-span-8 lg:col-span-7 flex flex-col justify-center gap-8 z-10 place-items-center text-center md:place-items-start md:text-left"
+                    className="col-span-1 md:col-span-8 lg:col-span-7 flex flex-col justify-center gap-4 md:gap-8 z-10 place-items-center text-center md:place-items-start md:text-left pt-10 md:pt-0"
                 >
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
-                        className="inline-flex max-w-max items-center gap-2 px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 backdrop-blur-md"
+                        className="inline-flex max-w-max items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 backdrop-blur-md mb-2 md:mb-0"
                     >
                         <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-                        <span className="text-xs md:text-sm font-medium text-cyan-300 uppercase tracking-wider">Available for work</span>
+                        <span className="text-[10px] md:text-sm font-medium text-cyan-300 uppercase tracking-wider">Available for work</span>
                     </motion.div>
 
-                    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.1] tracking-tight text-white">
+                    <h1 className="text-[28px] sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.2] tracking-tight text-white">
                         Building
-                        <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 animate-gradient-x pb-2">
+                        <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 animate-gradient-x pb-1 md:pb-2">
                             Intelligent
                         </span>
                         Future<span className="text-cyan-500">s</span>
                     </h1>
 
-                    <div className="h-12 md:h-16 flex items-center justify-center md:justify-start">
-                        <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-300 font-light">
+                    <div className="h-8 md:h-16 flex items-center justify-center md:justify-start -mt-2 md:mt-0">
+                        <span className="text-base sm:text-xl md:text-2xl lg:text-3xl text-gray-300 font-light">
                             I am a <span className="text-cyan-400 font-semibold border-r-2 border-cyan-400 pr-1 animate-pulse">{displayText}</span>
                         </span>
                     </div>
 
-                    <p className="text-base sm:text-lg text-gray-400 max-w-2xl leading-relaxed">
+                    <p className="text-sm sm:text-lg text-gray-400 max-w-2xl leading-relaxed px-2 md:px-0">
                         Transforming complex data into intelligent solutions. Specializing in Deep Learning, Computer Vision, and scalable AI architectures.
                     </p>
 
-                    <div className="grid grid-cols-1 gap-4 w-full sm:w-auto sm:flex sm:flex-row pt-4">
-                        <a href="#projects" className="group relative px-8 py-4 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/50 hover:scale-[1.02] transition-all overflow-hidden text-center w-full sm:w-auto">
+                    <div className="grid grid-cols-1 gap-3 w-full sm:w-auto sm:flex sm:flex-row pt-2 md:pt-4 px-4 md:px-0">
+                        <a href="#projects" className="group relative px-6 py-3.5 md:px-8 md:py-4 rounded-xl md:rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-sm md:text-base font-bold shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/50 hover:scale-[1.02] transition-all overflow-hidden text-center w-full sm:w-auto min-h-[44px] flex items-center justify-center">
                             <span className="relative z-10 flex items-center justify-center gap-2">
-                                View My Work <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                View My Work <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
                             </span>
                             <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                         </a>
 
-                        <a href="/resume.pdf" download className="group px-8 py-4 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-white font-semibold hover:bg-white/10 hover:border-cyan-500/50 transition-all flex items-center justify-center gap-2 text-center w-full sm:w-auto">
-                            <Download className="w-5 h-5 group-hover:translate-y-1 transition-transform" /> Resume
+                        <a href="/resume.pdf" download className="group px-6 py-3.5 md:px-8 md:py-4 rounded-xl md:rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-white text-sm md:text-base font-semibold hover:bg-white/10 hover:border-cyan-500/50 transition-all flex items-center justify-center gap-2 text-center w-full sm:w-auto min-h-[44px]">
+                            <Download className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-y-1 transition-transform" /> Resume
                         </a>
                     </div>
                 </motion.div>
