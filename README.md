@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Derlin Shaju - Liquid Glass Modern Portfolio
 
-## Getting Started
+A premium, futuristic portfolio website built with the latest web technologies, featuring a stunning liquid glass aesthetic and smooth animations.
 
-First, run the development server:
+## 🚀 Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS (v4)
+- **Animations**: Framer Motion
+- **Icons**: Lucide React
+- **Fonts**: Inter & Poppins (Google Fonts)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Key Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Liquid Glass Aesthetic**: Heavy use of glassmorphism with dynamic gradients, blurs, and translucent UI elements.
+- **Hero Section**: 3D orb simulation and typing effect for a captivating introduction.
+- **Floating Navbar**: Apple-style floating pill navigation with active state animations.
+- **Interactive Skills**: Floating glass capsules with tilt effects and gradient progress bars.
+- **Parallax Projects**: Large glass cards with immersive hover interactions and parallax depth.
+- **Smooth Animations**: Seamless page transitions, scroll-triggered reveals, and micro-interactions.
+- **Responsive Design**: Mobile-optimized layout with a bottom navigation bar for better accessibility on small screens.
+- **Dark Mode Theme**: Deep navy and neon accent color palette for a modern, high-tech feel.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Getting Started
 
-## Learn More
+1.  **Install Dependencies**:
+    ```bash
+    npm install
+    ```
 
-To learn more about Next.js, take a look at the following resources:
+2.  **Run Development Server**:
+    ```bash
+    npm run dev
+    ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3.  **Build for Production**:
+    ```bash
+    npm run build
+    npm start
+    ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📂 Project Structure
 
-## Deploy on Vercel
+- `src/app/page.tsx`: Main entry point assembling all sections.
+- `src/components/`: Reusable UI components (Hero, Navbar, About, Skills, Projects, etc.).
+- `src/app/globals.css`: Global styles, themes, and utility classes for glass effects.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Designed with ❤️ for Derlin Shaju.
