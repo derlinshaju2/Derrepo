@@ -68,7 +68,7 @@ export default function Contact() {
                                 </div>
                                 <div>
                                     <h4 className="text-xl font-bold text-white mb-1">Networking</h4>
-                                    <a href="#" className="text-gray-400 hover:text-blue-300 transition-colors">Connect on LinkedIn</a>
+                                    <a href="https://www.linkedin.com/in/derlinshaju/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-300 transition-colors">Connect on LinkedIn</a>
                                 </div>
                             </div>
                         </div>
