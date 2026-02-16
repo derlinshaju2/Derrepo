@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Menu, X, Home, BookOpen, User, Briefcase, Zap, Terminal } from "lucide-react";
+import Image from "next/image";
 
 export default function Navbar() {
     const [activeHash, setActiveHash] = useState("#home");
@@ -56,7 +57,15 @@ export default function Navbar() {
             >
                 {/* Logo / Name */}
                 <a href="#home" className="text-xl font-bold tracking-tight text-white flex items-center gap-2">
-                    <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold">D</span>
+                    <div className="w-9 h-9 rounded-full overflow-hidden border-2 border-cyan-500/50 shadow-lg shadow-cyan-500/20">
+                        <Image
+                            src="/1000299898.jpg"
+                            alt="Derlin Shaju"
+                            width={36}
+                            height={36}
+                            className="object-cover w-full h-full"
+                        />
+                    </div>
                     <span className="hidden sm:block">Derlin Shaju</span>
                 </a>
 
@@ -128,8 +137,8 @@ export default function Navbar() {
                                         setMobileMenuOpen(false);
                                     }}
                                     className={`flex items-center gap-4 p-4 rounded-xl border transition-all ${activeHash === item.href
-                                            ? "bg-gradient-to-r from-cyan-500/20 to-blue-600/20 border-cyan-500/30 text-white"
-                                            : "bg-white/5 border-white/5 text-gray-400 hover:text-white"
+                                        ? "bg-gradient-to-r from-cyan-500/20 to-blue-600/20 border-cyan-500/30 text-white"
+                                        : "bg-white/5 border-white/5 text-gray-400 hover:text-white"
                                         }`}
                                 >
                                     <div className={`p-2 rounded-lg ${activeHash === item.href ? "bg-cyan-500 text-white" : "bg-white/5 text-gray-400"}`}>
@@ -139,7 +148,7 @@ export default function Navbar() {
                                 </motion.a>
                             ))}
                         </div>
-                        
+
                         {/* Footer decorative */}
                         <div className="p-6 text-center text-gray-500 text-xs uppercase tracking-widest border-t border-white/5">
                             Derlin Shaju &copy; 2026

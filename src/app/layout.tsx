@@ -16,6 +16,9 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Derlin Shaju | AI & Data Science Engineer",
   description: "Portfolio of Derlin Shaju, specializing in Machine Learning, Deep Learning, and AI solutions.",
+  icons: {
+    icon: "/1000299898.jpg",
+  },
 };
 
 export default function RootLayout({
