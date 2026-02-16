@@ -34,10 +34,17 @@ export default function Footer() {
                     </motion.div>
 
                     <div className="flex gap-4 justify-center md:justify-start">
-                        {[Github, Linkedin, Twitter, Mail].map((Icon, idx) => (
+                        {[
+                            { Icon: Github, href: "https://github.com/derlinshaju2" },
+                            { Icon: Linkedin, href: "https://www.linkedin.com/in/derlinshaju/" },
+                            { Icon: Twitter, href: "#" },
+                            { Icon: Mail, href: "mailto:derlinshaju2@gmail.com" }
+                        ].map(({ Icon, href }, idx) => (
                             <a
                                 key={idx}
-                                href="#"
+                                href={href}
+                                target={href.startsWith("http") ? "_blank" : "_self"}
+                                rel={href.startsWith("http") ? "noopener noreferrer" : ""}
                                 className="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-cyan-500/20 hover:border-cyan-500/50 hover:text-cyan-400 transition-all duration-300 transform hover:-translate-y-1 shadow-lg"
                             >
                                 <Icon size={20} />
@@ -70,7 +77,7 @@ export default function Footer() {
                     <ul className="space-y-4 text-sm">
                         <li className="flex flex-col gap-1">
                             <span className="text-gray-600 font-medium uppercase text-xs">Email</span>
-                            <a href="mailto:derlinshaju@email.com" className="hover:text-white transition-colors">derlinshaju@email.com</a>
+                            <a href="mailto:derlinshaju2@gmail.com" className="hover:text-white transition-colors">derlinshaju2@gmail.com</a>
                         </li>
                         <li className="flex flex-col gap-1">
                             <span className="text-gray-600 font-medium uppercase text-xs">Location</span>
