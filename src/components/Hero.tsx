@@ -105,7 +105,7 @@ export default function Hero() {
                             <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                         </a>
 
-                        <a href="/resume.pdf" download className="group px-6 py-3.5 md:px-8 md:py-4 rounded-xl md:rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-white text-sm md:text-base font-semibold hover:bg-white/10 hover:border-cyan-500/50 transition-all flex items-center justify-center gap-2 text-center w-full sm:w-auto min-h-[44px]">
+                        <a href="/Derlinshaju_Resume1.pdf" download="Derlinshaju_Resume.pdf" className="group px-6 py-3.5 md:px-8 md:py-4 rounded-xl md:rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-white text-sm md:text-base font-semibold hover:bg-white/10 hover:border-cyan-500/50 transition-all flex items-center justify-center gap-2 text-center w-full sm:w-auto min-h-[44px]">
                             <Download className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-y-1 transition-transform" /> Resume
                         </a>
                     </div>
