@@ -19,11 +19,11 @@ export default function Projects({ onViewProject }: ProjectsProps) {
             image: "https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=800&auto=format&fit=crop"
         },
         {
-            id: "health-ai",
-            title: "AI Health Assistant",
-            description: "Predictive health analytics platform tracking vital signs to forecast potential risks and generate personalized wellness plans.",
-            tech: ["TensorFlow", "React", "Node.js"],
-            color: "from-blue-500 to-purple-500",
+            id: "healthguard",
+            title: "AI Health Guard",
+            description: "AI-driven health monitoring system providing disease prediction, BMI analysis, and real-time yoga pose detection for proactive wellness.",
+            tech: ["TensorFlow", "MediaPipe", "React", "Python"],
+            color: "from-teal-500 to-emerald-600",
             image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop"
         }
     ];
@@ -69,7 +69,7 @@ export default function Projects({ onViewProject }: ProjectsProps) {
 
                                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black/40 backdrop-blur-sm z-20">
                                         <button
-                                            onClick={() => project.id === "socialsense" && onViewProject?.("socialsense")}
+                                            onClick={() => (project.id === "socialsense" || project.id === "healthguard") && onViewProject?.(project.id)}
                                             className="px-6 py-2 rounded-full bg-white/10 border border-white/20 text-white backdrop-blur-md hover:bg-white/20 transition-all transform translate-y-4 group-hover:translate-y-0"
                                         >
                                             {project.id === "socialsense" ? "View AI System" : "View Case Study"}

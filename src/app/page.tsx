@@ -14,18 +14,26 @@ import TechStack from "@/components/TechStack";
 import Features from "@/components/Features";
 import Demo from "@/components/Demo";
 import Dashboard from "@/components/Dashboard";
+import HealthHero from "@/components/HealthHero";
+import HealthDataInput from "@/components/HealthDataInput";
+import DiseasePrediction from "@/components/DiseasePrediction";
+import BMIVision from "@/components/BMIVision";
+import NutritionAnalysis from "@/components/NutritionAnalysis";
+import YogaVision from "@/components/YogaVision";
 import Footer from "@/components/Footer";
 
 export default function Home() {
-  const [view, setView] = useState<"portfolio" | "socialsense">("portfolio");
+  const [view, setView] = useState<"portfolio" | "socialsense" | "healthguard">("portfolio");
 
-  const handleViewChange = (newView: "portfolio" | "socialsense") => {
+  const handleViewChange = (newView: "portfolio" | "socialsense" | "healthguard") => {
     setView(newView);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
-    <main className={`min-h-screen transition-colors duration-700 ${view === "portfolio" ? "bg-[#0B1120]" : "bg-slate-50"}`}>
+    <main className={`min-h-screen transition-colors duration-700 ${view === "portfolio" ? "bg-[#0B1120]" :
+      view === "socialsense" ? "bg-slate-50" : "bg-teal-50"
+      }`}>
       <Navbar currentView={view} onViewChange={handleViewChange} />
 
       {view === "portfolio" ? (
@@ -45,6 +53,17 @@ export default function Home() {
           <Features />
           <Demo />
           <Dashboard />
+        </>
+      )}
+
+      {view === "healthguard" && (
+        <>
+          <HealthHero />
+          <HealthDataInput />
+          <DiseasePrediction />
+          <BMIVision />
+          <NutritionAnalysis />
+          <YogaVision />
         </>
       )}
 

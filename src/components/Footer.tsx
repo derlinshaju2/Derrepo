@@ -4,11 +4,12 @@ import { motion } from "framer-motion";
 import { Github, Linkedin, Twitter, Mail, ArrowUp } from "lucide-react";
 
 interface FooterProps {
-    currentView?: "portfolio" | "socialsense";
+    currentView?: "portfolio" | "socialsense" | "healthguard";
 }
 
 export default function Footer({ currentView = "portfolio" }: FooterProps) {
-    const isLight = currentView === "socialsense";
+    const isLight = currentView === "socialsense" || currentView === "healthguard";
+    const isHealth = currentView === "healthguard";
 
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -55,7 +56,9 @@ export default function Footer({ currentView = "portfolio" }: FooterProps) {
                                 target={href.startsWith("http") ? "_blank" : "_self"}
                                 rel={href.startsWith("http") ? "noopener noreferrer" : ""}
                                 className={`p-3 rounded-full border transition-all duration-300 transform hover:-translate-y-1 shadow-sm ${isLight
-                                    ? "bg-slate-50 border-slate-200 text-slate-600 hover:bg-cyan-50 hover:border-cyan-200 hover:text-cyan-600 shadow-slate-200/50"
+                                    ? isHealth
+                                        ? "bg-white border-teal-200 text-teal-600 hover:bg-teal-600 hover:text-white"
+                                        : "bg-slate-50 border-slate-200 text-slate-600 hover:bg-cyan-50 hover:border-cyan-200 hover:text-cyan-600 shadow-slate-200/50"
                                     : "bg-white/5 border-white/10 text-gray-400 hover:bg-cyan-500/20 hover:border-cyan-500/50 hover:text-cyan-400"
                                     }`}
                             >
@@ -69,14 +72,18 @@ export default function Footer({ currentView = "portfolio" }: FooterProps) {
                 <div>
                     <h3 className={`font-bold mb-6 uppercase tracking-wider text-sm ${isLight ? "text-slate-900" : "text-white"}`}>Navigation</h3>
                     <ul className="space-y-4">
-                        {["Home", "About", "Modules", "Architecture", "Demo"].map((item) => (
+                        {(isHealth ? ["Predictor", "BMI", "Nutrition", "Yoga"] : ["Home", "About", "Modules", "Architecture", "Demo"]).map((item) => (
                             <li key={item}>
                                 <a
-                                    href={`#${item.toLowerCase()}`}
-                                    className={`transition-colors flex items-center justify-center md:justify-start gap-2 group ${isLight ? "hover:text-cyan-600 text-slate-500" : "hover:text-cyan-400 text-gray-400"
+                                    href={`#${item.toLowerCase().replace(/ /g, "-")}`}
+                                    className={`transition-colors flex items-center justify-center md:justify-start gap-2 group ${isLight
+                                        ? isHealth ? "hover:text-teal-600 text-teal-700/70" : "hover:text-cyan-600 text-slate-500"
+                                        : "hover:text-cyan-400 text-gray-400"
                                         }`}
                                 >
-                                    <span className={`w-1.5 h-1.5 rounded-full transition-all ${isLight ? "bg-cyan-600/0 group-hover:bg-cyan-600" : "bg-cyan-500/0 group-hover:bg-cyan-500"
+                                    <span className={`w-1.5 h-1.5 rounded-full transition-all ${isLight
+                                        ? isHealth ? "bg-teal-600/0 group-hover:bg-teal-600" : "bg-cyan-600/0 group-hover:bg-cyan-600"
+                                        : "bg-cyan-500/0 group-hover:bg-cyan-500"
                                         }`} />
                                     {item}
                                 </a>
@@ -90,13 +97,17 @@ export default function Footer({ currentView = "portfolio" }: FooterProps) {
 
             </div>
 
-            <div className={`flex flex-col md:flex-row justify-between items-center mt-16 pt-8 border-t max-w-7xl mx-auto px-6 relative z-10 text-sm ${isLight ? "border-slate-100 text-slate-400" : "border-white/5 text-gray-500"
+            <div className={`flex flex-col md:flex-row justify-between items-center mt-16 pt-8 border-t max-w-7xl mx-auto px-6 relative z-10 text-sm ${isLight
+                ? isHealth ? "border-teal-100 text-teal-600/60" : "border-slate-100 text-slate-400"
+                : "border-white/5 text-gray-500"
                 }`}>
-                <p>&copy; {new Date().getFullYear()} Social Distancing using Image Processing. Project by Derlin Shaju.</p>
+                <p>&copy; {new Date().getFullYear()} {isHealth ? "AI Health Guard" : "Social Distancing using Image Processing"}. Project by Derlin Shaju.</p>
 
                 <button
                     onClick={scrollToTop}
-                    className={`flex items-center gap-2 transition-colors group ${isLight ? "text-cyan-600 hover:text-cyan-700" : "text-cyan-400 hover:text-white"
+                    className={`flex items-center gap-2 transition-colors group ${isLight
+                        ? isHealth ? "text-teal-600 hover:text-teal-700" : "text-cyan-600 hover:text-cyan-700"
+                        : "text-cyan-400 hover:text-white"
                         }`}
                 >
                     Back to Top <ArrowUp size={16} className="group-hover:-translate-y-1 transition-transform" />

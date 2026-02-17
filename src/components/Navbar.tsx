@@ -6,8 +6,8 @@ import { Menu, X, Home, BookOpen, User, Briefcase, Zap, Terminal } from "lucide-
 import Image from "next/image";
 
 interface NavbarProps {
-    currentView: "portfolio" | "socialsense";
-    onViewChange: (view: "portfolio" | "socialsense") => void;
+    currentView: "portfolio" | "socialsense" | "healthguard";
+    onViewChange: (view: "portfolio" | "socialsense" | "healthguard") => void;
 }
 
 export default function Navbar({ currentView, onViewChange }: NavbarProps) {
@@ -55,7 +55,16 @@ export default function Navbar({ currentView, onViewChange }: NavbarProps) {
         { name: "Dashboard", href: "#dashboard", icon: <BookOpen size={20} /> },
     ];
 
-    const navItems = currentView === "portfolio" ? portfolioItems : projectItems;
+    const healthGuardItems = [
+        { name: "Predictor", href: "#predictor", icon: <Zap size={20} /> },
+        { name: "BMI & Diet", href: "#bmi", icon: <Briefcase size={20} /> },
+        { name: "Nutrition", href: "#nutrition", icon: <Terminal size={20} /> },
+        { name: "Yoga Vision", href: "#yoga", icon: <BookOpen size={20} /> },
+        { name: "Dashboard", href: "#health-dashboard", icon: <Zap size={20} /> },
+    ];
+
+    const navItems = currentView === "portfolio" ? portfolioItems :
+        currentView === "socialsense" ? projectItems : healthGuardItems;
 
     return (
         <>
@@ -66,7 +75,9 @@ export default function Navbar({ currentView, onViewChange }: NavbarProps) {
                 className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 transition-all duration-300 ${scrolled
                     ? currentView === "portfolio"
                         ? "bg-[#0B1120]/80 backdrop-blur-xl border-b border-white/10 shadow-lg"
-                        : "bg-white/80 backdrop-blur-xl border-b border-slate-200 shadow-sm"
+                        : currentView === "socialsense"
+                            ? "bg-white/80 backdrop-blur-xl border-b border-slate-200 shadow-sm"
+                            : "bg-teal-50/80 backdrop-blur-xl border-b border-teal-100 shadow-sm"
                     : "bg-transparent"
                     }`}
             >
@@ -75,18 +86,26 @@ export default function Navbar({ currentView, onViewChange }: NavbarProps) {
                     onClick={() => onViewChange("portfolio")}
                     className="text-xl font-bold tracking-tight flex items-center gap-2 group"
                 >
-                    <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:scale-110 transition-transform">
+                    <div className={`w-9 h-9 rounded-lg bg-gradient-to-br flex items-center justify-center shadow-lg transition-transform group-hover:scale-110 ${currentView === "healthguard"
+                            ? "from-teal-500 to-emerald-600 shadow-teal-500/20"
+                            : "from-cyan-500 to-blue-600 shadow-cyan-500/20"
+                        }`}>
                         <Zap size={20} className="text-white" />
                     </div>
-                    <span className={`hidden sm:block transition-colors ${currentView === "portfolio" ? "text-white" : "text-slate-900"}`}>
-                        {currentView === "portfolio" ? "Derlin Shaju" : "Social Distancing using Image Processing"}
+                    <span className={`hidden sm:block transition-colors ${currentView === "portfolio" ? "text-white" :
+                            currentView === "healthguard" ? "text-teal-900" : "text-slate-900"
+                        }`}>
+                        {currentView === "portfolio" ? "Derlin Shaju" :
+                            currentView === "healthguard" ? "AI Health Guard" : "Social Distancing Monitoring"}
                     </span>
                 </button>
 
                 {/* Desktop Menu */}
                 <div className={`hidden lg:flex items-center gap-1 p-1 rounded-full border transition-all duration-300 ${currentView === "portfolio"
-                    ? "bg-white/[0.03] border-white/10 backdrop-blur-md"
-                    : "bg-slate-100 border-slate-200 backdrop-blur-md"
+                        ? "bg-white/[0.03] border-white/10 backdrop-blur-md"
+                        : currentView === "healthguard"
+                            ? "bg-teal-100/50 border-teal-200 backdrop-blur-md"
+                            : "bg-slate-100 border-slate-200 backdrop-blur-md"
                     }`}>
                     {currentView === "socialsense" && (
                         <button
@@ -102,8 +121,8 @@ export default function Navbar({ currentView, onViewChange }: NavbarProps) {
                             href={item.href}
                             onClick={() => setActiveHash(item.href)}
                             className={`relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${activeHash === item.href
-                                ? currentView === "portfolio" ? "text-white" : "text-cyan-600"
-                                : currentView === "portfolio" ? "text-gray-400 hover:text-white" : "text-slate-500 hover:text-slate-900"
+                                ? currentView === "portfolio" ? "text-white" : currentView === "healthguard" ? "text-teal-700" : "text-cyan-600"
+                                : currentView === "portfolio" ? "text-gray-400 hover:text-white" : currentView === "healthguard" ? "text-teal-600 hover:text-teal-900" : "text-slate-500 hover:text-slate-900"
                                 }`}
                         >
                             {activeHash === item.href && (
