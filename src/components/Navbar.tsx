@@ -87,25 +87,25 @@ export default function Navbar({ currentView, onViewChange }: NavbarProps) {
                     className="text-xl font-bold tracking-tight flex items-center gap-2 group"
                 >
                     <div className={`w-9 h-9 rounded-lg bg-gradient-to-br flex items-center justify-center shadow-lg transition-transform group-hover:scale-110 ${currentView === "healthguard"
-                            ? "from-teal-500 to-emerald-600 shadow-teal-500/20"
-                            : "from-cyan-500 to-blue-600 shadow-cyan-500/20"
+                        ? "from-teal-500 to-emerald-600 shadow-teal-500/20"
+                        : "from-cyan-500 to-blue-600 shadow-cyan-500/20"
                         }`}>
                         <Zap size={20} className="text-white" />
                     </div>
                     <span className={`hidden sm:block transition-colors ${currentView === "portfolio" ? "text-white" :
-                            currentView === "healthguard" ? "text-teal-900" : "text-slate-900"
+                        currentView === "healthguard" ? "text-teal-900" : "text-slate-900"
                         }`}>
                         {currentView === "portfolio" ? "Derlin Shaju" :
-                            currentView === "healthguard" ? "AI Health Guard" : "Social Distancing Monitoring"}
+                            currentView === "healthguard" ? "AI Health Guard" : "SocialSense AI"}
                     </span>
                 </button>
 
                 {/* Desktop Menu */}
                 <div className={`hidden lg:flex items-center gap-1 p-1 rounded-full border transition-all duration-300 ${currentView === "portfolio"
-                        ? "bg-white/[0.03] border-white/10 backdrop-blur-md"
-                        : currentView === "healthguard"
-                            ? "bg-teal-100/50 border-teal-200 backdrop-blur-md"
-                            : "bg-slate-100 border-slate-200 backdrop-blur-md"
+                    ? "bg-white/[0.03] border-white/10 backdrop-blur-md"
+                    : currentView === "healthguard"
+                        ? "bg-teal-100/50 border-teal-200 backdrop-blur-md"
+                        : "bg-slate-100 border-slate-200 backdrop-blur-md"
                     }`}>
                     {currentView === "socialsense" && (
                         <button
@@ -226,7 +226,7 @@ export default function Navbar({ currentView, onViewChange }: NavbarProps) {
 
                         <div className={`p-6 text-center text-xs uppercase tracking-widest border-t ${currentView === "portfolio" ? "text-gray-500 border-white/5" : "text-slate-400 border-slate-200"
                             }`}>
-                            {currentView === "portfolio" ? "Derlin Shaju" : "Social Distancing using Image Processing"} &copy; 2026
+                            {currentView === "portfolio" ? "Derlin Shaju" : "SocialSense AI"} &copy; 2026
                         </div>
                     </motion.div>
                 )}

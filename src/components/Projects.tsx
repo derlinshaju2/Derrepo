@@ -12,7 +12,7 @@ export default function Projects({ onViewProject }: ProjectsProps) {
     const projects = [
         {
             id: "socialsense",
-            title: "Social Distancing using Image Processing",
+            title: "SocialSense AI",
             description: "Real-time computer vision system utilizing surveillance feeds to detect and alert social distancing violations. Built for public safety protocols.",
             tech: ["OpenCV", "Python", "YOLOv8"],
             color: "from-cyan-500 to-blue-500",

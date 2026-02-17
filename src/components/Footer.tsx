@@ -36,10 +36,10 @@ export default function Footer({ currentView = "portfolio" }: FooterProps) {
                         viewport={{ once: true }}
                     >
                         <h2 className={`text-3xl font-bold font-poppins mb-2 tracking-tight ${isLight ? "text-slate-900" : "text-white"}`}>
-                            Social Distancing <span className="text-cyan-600">AI.</span>
+                            SocialSense <span className="text-cyan-600">AI.</span>
                         </h2>
                         <p className={`text-lg max-w-sm mx-auto md:mx-0 leading-relaxed ${isLight ? "text-slate-500" : "text-gray-500"}`}>
-                            Protecting public health through intelligent computer vision and real-time social distancing using image processing.
+                            Protecting public health through intelligent computer vision and real-time social monitoring.
                         </p>
                     </motion.div>
 
@@ -101,7 +101,7 @@ export default function Footer({ currentView = "portfolio" }: FooterProps) {
                 ? isHealth ? "border-teal-100 text-teal-600/60" : "border-slate-100 text-slate-400"
                 : "border-white/5 text-gray-500"
                 }`}>
-                <p>&copy; {new Date().getFullYear()} {isHealth ? "AI Health Guard" : "Social Distancing using Image Processing"}. Project by Derlin Shaju.</p>
+                <p>&copy; {new Date().getFullYear()} {isHealth ? "AI Health Guard" : "SocialSense AI"}. Project by Derlin Shaju.</p>
 
                 <button
                     onClick={scrollToTop}
