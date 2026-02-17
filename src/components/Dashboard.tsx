@@ -87,27 +87,29 @@ export default function Dashboard() {
 
                         <div className="flex items-end justify-between h-64 gap-2 md:gap-4 px-4 relative">
                             {chartData.map((data, index) => (
-                                <div key={index} className="flex-1 flex flex-col items-center gap-4 group">
+                                <div key={index} className="flex-1 flex flex-col items-center gap-4 group cursor-pointer">
                                     <div className="relative w-full flex flex-col justify-end h-full">
                                         <motion.div
                                             initial={{ height: 0 }}
                                             whileInView={{ height: `${data.violations}%` }}
                                             viewport={{ once: true }}
                                             transition={{ duration: 1, delay: index * 0.05 }}
-                                            className="w-full bg-slate-100 group-hover:bg-cyan-600 transition-all rounded-t-lg relative"
+                                            className="w-full bg-gradient-to-t from-cyan-600/10 to-cyan-500/30 border-t-2 border-cyan-500 group-hover:from-cyan-500 group-hover:to-cyan-400 transition-all rounded-t-sm relative"
                                         >
-                                            <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10 shadow-xl">
-                                                {data.violations} Counts
+                                            <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] font-bold px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-all transform group-hover:-translate-y-1 whitespace-nowrap z-10 shadow-xl pointer-events-none">
+                                                {data.violations} Incidents
+                                                {/* Tooltip Arrow */}
+                                                <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-slate-900" />
                                             </div>
                                         </motion.div>
                                     </div>
-                                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
+                                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter group-hover:text-cyan-600 transition-colors">
                                         {data.day}
                                     </span>
                                 </div>
                             ))}
                             {/* Gridlines */}
-                            <div className="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-[0.05] z-0">
+                            <div className="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-[0.05] z-0 px-4">
                                 {[...Array(5)].map((_, i) => (
                                     <div key={i} className="w-full h-px bg-slate-900" />
                                 ))}
