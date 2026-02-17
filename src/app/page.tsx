@@ -38,16 +38,18 @@ export default function Home() {
       }`}>
       <Navbar currentView={view} onViewChange={handleViewChange} />
 
-      {view === "portfolio" ? (
+      {view === "portfolio" && (
         <>
           <Hero />
           <About />
           <Skills />
-          <Projects onViewProject={() => handleViewChange("socialsense")} />
+          <Projects onViewProject={(id) => handleViewChange(id as any)} />
           <Certifications />
           <Courses />
         </>
-      ) : (
+      )}
+
+      {view === "socialsense" && (
         <>
           <Modules />
           <Architecture />
