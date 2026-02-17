@@ -87,14 +87,14 @@ export default function Dashboard() {
 
                         <div className="flex items-end justify-between h-64 gap-2 md:gap-4 px-4 relative">
                             {chartData.map((data, index) => (
-                                <div key={index} className="flex-1 flex flex-col items-center gap-4 group cursor-pointer">
-                                    <div className="relative w-full flex flex-col justify-end h-full">
+                                <div key={index} className="flex-1 h-full flex flex-col items-center gap-4 group cursor-pointer">
+                                    <div className="relative w-full flex-1 flex flex-col justify-end">
                                         <motion.div
                                             initial={{ height: 0 }}
                                             whileInView={{ height: `${data.violations}%` }}
-                                            viewport={{ once: true }}
+                                            viewport={{ once: true, amount: 0.1 }}
                                             transition={{ duration: 1, delay: index * 0.05 }}
-                                            className="w-full bg-gradient-to-t from-cyan-600/10 to-cyan-500/30 border-t-2 border-cyan-500 group-hover:from-cyan-500 group-hover:to-cyan-400 transition-all rounded-t-sm relative"
+                                            className="w-full bg-gradient-to-t from-cyan-600/20 to-cyan-500/40 border-t-2 border-cyan-500 group-hover:from-cyan-500 group-hover:to-cyan-400 transition-all rounded-t-sm relative shadow-[0_0_20px_rgba(6,182,212,0.1)]"
                                         >
                                             <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] font-bold px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-all transform group-hover:-translate-y-1 whitespace-nowrap z-10 shadow-xl pointer-events-none">
                                                 {data.violations} Incidents
