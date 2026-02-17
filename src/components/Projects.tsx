@@ -20,7 +20,7 @@ export default function Projects({ onViewProject }: ProjectsProps) {
         },
         {
             id: "healthguard",
-            title: "AI Health Guard",
+            title: "AI-Driven Health Monitoring & Proactive Wellness Management System",
             description: "AI-driven health monitoring system providing disease prediction, BMI analysis, and real-time yoga pose detection for proactive wellness.",
             tech: ["TensorFlow", "MediaPipe", "React", "Python"],
             color: "from-teal-500 to-emerald-600",

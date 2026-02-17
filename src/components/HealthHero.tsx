@@ -46,10 +46,10 @@ export default function HealthHero() {
                         <span className="text-xs font-bold text-teal-700 uppercase tracking-widest">Intelligent Health Analysis active</span>
                     </motion.div>
 
-                    <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-teal-950 leading-[1.1]">
-                        AI-Driven <br />
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-teal-950 leading-[1.1]">
+                        AI-Driven Health Monitoring <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-emerald-600">
-                            Health Monitoring
+                            & Proactive Wellness Management
                         </span>
                     </h1>
 
