@@ -5,14 +5,19 @@ import { useState, useEffect } from "react";
 import { Menu, X, Home, BookOpen, User, Briefcase, Zap, Terminal } from "lucide-react";
 import Image from "next/image";
 
-export default function Navbar() {
+interface NavbarProps {
+    currentView: "portfolio" | "socialsense";
+    onViewChange: (view: "portfolio" | "socialsense") => void;
+}
+
+export default function Navbar({ currentView, onViewChange }: NavbarProps) {
     const [activeHash, setActiveHash] = useState("#home");
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 20); // Trigger earlier for mobile feel
+            setScrolled(window.scrollY > 20);
             const sections = document.querySelectorAll("section");
             sections.forEach((section) => {
                 const top = section.offsetTop - 100;
@@ -26,30 +31,36 @@ export default function Navbar() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    // Lock body scroll when menu is open
     useEffect(() => {
         if (mobileMenuOpen) {
             document.body.style.overflow = "hidden";
         } else {
             document.body.style.overflow = "unset";
         }
-        return () => { document.body.style.overflow = "unset"; };
     }, [mobileMenuOpen]);
 
-    const navItems = [
+    const portfolioItems = [
         { name: "Home", href: "#home", icon: <Home size={20} /> },
         { name: "About", href: "#about", icon: <User size={20} /> },
-        { name: "Modules", href: "#modules", icon: <Briefcase size={20} /> },
-        { name: "Architecture", href: "#architecture", icon: <Zap size={20} /> },
-        { name: "Technologies", href: "#technologies", icon: <Terminal size={20} /> },
-        { name: "Features", href: "#features", icon: <BookOpen size={20} /> },
-        { name: "Demo", href: "#demo", icon: <Terminal size={20} /> },
+        { name: "Skills", href: "#skills", icon: <Zap size={20} /> },
+        { name: "Projects", href: "#projects", icon: <Briefcase size={20} /> },
+        { name: "Certifications", href: "#certifications", icon: <BookOpen size={20} /> },
         { name: "Contact", href: "#contact", icon: <Terminal size={20} /> },
     ];
 
+    const projectItems = [
+        { name: "System", href: "#modules", icon: <Briefcase size={20} /> },
+        { name: "Architecture", href: "#architecture", icon: <Zap size={20} /> },
+        { name: "Tech", href: "#technologies", icon: <Terminal size={20} /> },
+        { name: "Demo", href: "#demo", icon: <Terminal size={20} /> },
+        { name: "Dashboard", href: "#dashboard", icon: <BookOpen size={20} /> },
+        { name: "Admin", href: "#admin", icon: <Terminal size={20} /> },
+    ];
+
+    const navItems = currentView === "portfolio" ? portfolioItems : projectItems;
+
     return (
         <>
-            {/* Desktop & Mobile Navbar Container */}
             <motion.nav
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
@@ -58,15 +69,28 @@ export default function Navbar() {
                     }`}
             >
                 {/* Logo / Name */}
-                <a href="#home" className="text-xl font-bold tracking-tight text-white flex items-center gap-2">
-                    <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20">
+                <button
+                    onClick={() => onViewChange("portfolio")}
+                    className="text-xl font-bold tracking-tight text-white flex items-center gap-2 group"
+                >
+                    <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:scale-110 transition-transform">
                         <Zap size={20} className="text-white" />
                     </div>
-                    <span className="hidden sm:block">SocialSense AI</span>
-                </a>
+                    <span className="hidden sm:block">
+                        {currentView === "portfolio" ? "Derlin Shaju" : "SocialSense AI"}
+                    </span>
+                </button>
 
                 {/* Desktop Menu */}
                 <div className="hidden lg:flex items-center gap-1 p-1 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-md">
+                    {currentView === "socialsense" && (
+                        <button
+                            onClick={() => onViewChange("portfolio")}
+                            className="px-4 py-2 text-sm font-bold text-cyan-400 hover:text-cyan-300 transition-colors mr-2 border-r border-white/10"
+                        >
+                            ← Back to Portfolio
+                        </button>
+                    )}
                     {navItems.map((item) => (
                         <a
                             key={item.name}
@@ -107,7 +131,6 @@ export default function Navbar() {
                         transition={{ type: "spring", damping: 25, stiffness: 200 }}
                         className="fixed inset-0 z-[60] bg-[#0B1120] flex flex-col lg:hidden"
                     >
-                        {/* Header */}
                         <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
                             <span className="text-xl font-bold text-white">Menu</span>
                             <button
@@ -119,8 +142,20 @@ export default function Navbar() {
                             </button>
                         </div>
 
-                        {/* Menu Items */}
                         <div className="flex-1 overflow-y-auto py-8 px-6 flex flex-col gap-4">
+                            {currentView === "socialsense" && (
+                                <button
+                                    onClick={() => {
+                                        onViewChange("portfolio");
+                                        setMobileMenuOpen(false);
+                                    }}
+                                    className="flex items-center gap-4 p-4 rounded-xl border bg-cyan-500/10 border-cyan-500/30 text-cyan-400 font-bold mb-4"
+                                >
+                                    <Home size={20} />
+                                    <span>Back to Portfolio</span>
+                                </button>
+                            )}
+
                             {navItems.map((item, index) => (
                                 <motion.a
                                     initial={{ opacity: 0, x: 20 }}
@@ -145,9 +180,8 @@ export default function Navbar() {
                             ))}
                         </div>
 
-                        {/* Footer decorative */}
                         <div className="p-6 text-center text-gray-500 text-xs uppercase tracking-widest border-t border-white/5">
-                            SocialSense AI &copy; 2026
+                            {currentView === "portfolio" ? "Derlin Shaju" : "SocialSense AI"} &copy; 2026
                         </div>
                     </motion.div>
                 )}
