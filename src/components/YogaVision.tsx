@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Camera, RefreshCw, CheckCircle, Timer, AlertCircle, Info } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const poses = [
     { name: "Tree Pose", accuracy: 92, holdTime: "30s", instructions: "Balance on one leg, place foot on inner thigh." },
@@ -12,6 +12,94 @@ const poses = [
 
 export default function YogaVision() {
     const [isCameraActive, setIsCameraActive] = useState(false);
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+    const [poseMatch, setPoseMatch] = useState(94);
+
+    useEffect(() => {
+        let stream: MediaStream | null = null;
+        let animationId: number;
+
+        const startCamera = async () => {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } });
+                if (videoRef.current) {
+                    videoRef.current.srcObject = stream;
+                }
+                setIsCameraActive(true);
+                drawSkeletalTracking();
+            } catch (err) {
+                console.error("Error accessing camera:", err);
+                setIsCameraActive(false);
+            }
+        };
+
+        const drawSkeletalTracking = () => {
+            if (!canvasRef.current || !videoRef.current) return;
+            const ctx = canvasRef.current.getContext("2d");
+            if (!ctx) return;
+
+            const animate = () => {
+                ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+                // Draw mock skeletal points that fluctuate slightly to simulate AI tracking
+                const time = Date.now() / 1000;
+                const points = [
+                    { x: 50 + Math.sin(time) * 2, y: 20 + Math.cos(time) * 1 }, // Head
+                    { x: 50, y: 35 }, // Neck
+                    { x: 35 + Math.sin(time * 0.5) * 2, y: 35 }, // L Shoulder
+                    { x: 65 - Math.sin(time * 0.5) * 2, y: 35 }, // R Shoulder
+                    { x: 50, y: 60 }, // Hip
+                    { x: 35, y: 85 }, // L Foot
+                    { x: 65, y: 85 }, // R Foot
+                ];
+
+                ctx.strokeStyle = "#14b8a6";
+                ctx.lineWidth = 3;
+                ctx.lineCap = "round";
+                ctx.beginPath();
+
+                // Draw connecting lines
+                ctx.moveTo(points[0].x * 3.2, points[0].y * 1.8);
+                ctx.lineTo(points[1].x * 3.2, points[1].y * 1.8);
+                ctx.lineTo(points[2].x * 3.2, points[2].y * 1.8);
+                ctx.moveTo(points[1].x * 3.2, points[1].y * 1.8);
+                ctx.lineTo(points[3].x * 3.2, points[3].y * 1.8);
+                ctx.moveTo(points[1].x * 3.2, points[1].y * 1.8);
+                ctx.lineTo(points[4].x * 3.2, points[4].y * 1.8);
+                ctx.lineTo(points[5].x * 3.2, points[5].y * 1.8);
+                ctx.moveTo(points[4].x * 3.2, points[4].y * 1.8);
+                ctx.lineTo(points[6].x * 3.2, points[6].y * 1.8);
+                ctx.stroke();
+
+                // Draw joints
+                points.forEach(p => {
+                    ctx.fillStyle = "#2dd4bf";
+                    ctx.beginPath();
+                    ctx.arc(p.x * 3.2, p.y * 1.8, 4, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.shadowBlur = 10;
+                    ctx.shadowColor = "#14b8a6";
+                });
+
+                setPoseMatch(prev => Math.min(100, Math.max(90, prev + (Math.random() - 0.5))));
+                animationId = requestAnimationFrame(animate);
+            };
+
+            animate();
+        };
+
+        if (isCameraActive) {
+            startCamera();
+        }
+
+        return () => {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+            cancelAnimationFrame(animationId);
+        };
+    }, [isCameraActive]);
 
     return (
         <section id="yoga" className="py-24 px-6 bg-teal-950 text-white relative overflow-hidden">
@@ -62,30 +150,29 @@ export default function YogaVision() {
                                     </button>
                                 </div>
                             ) : (
-                                <div className="absolute inset-0 bg-teal-900/10 flex items-center justify-center">
-                                    <motion.div
-                                        animate={{ rotate: 360 }}
-                                        transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                                        className="text-teal-500 opacity-50"
-                                    >
-                                        <RefreshCw size={48} />
-                                    </motion.div>
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                    <video
+                                        ref={videoRef}
+                                        autoPlay
+                                        playsInline
+                                        muted
+                                        className="w-full h-full object-cover scale-x-[-1]"
+                                    />
+                                    <canvas
+                                        ref={canvasRef}
+                                        width={320}
+                                        height={180}
+                                        className="absolute inset-0 w-full h-full z-10 scale-x-[-1]"
+                                    />
 
-                                    {/* Mock Skeletal Overlay */}
-                                    <svg className="absolute inset-0 w-full h-full pointer-events-none stroke-teal-400 opacity-60" viewBox="0 0 100 100">
-                                        <line x1="50" y1="20" x2="50" y2="50" strokeWidth="1" />
-                                        <line x1="50" y1="50" x2="30" y2="80" strokeWidth="1" />
-                                        <line x1="50" y1="50" x2="70" y2="80" strokeWidth="1" />
-                                        <line x1="30" y1="30" x2="70" y2="30" strokeWidth="1" />
-                                        <circle cx="50" cy="20" r="2" fill="currentColor" />
-                                    </svg>
+                                    <div className="absolute inset-0 bg-teal-900/10 pointer-events-none" />
                                 </div>
                             )}
 
                             {/* HUD Overlays */}
                             {isCameraActive && (
                                 <>
-                                    <div className="absolute top-6 left-6 flex gap-4">
+                                    <div className="absolute top-6 left-6 flex gap-4 z-20">
                                         <div className="px-4 py-2 rounded-xl bg-black/60 backdrop-blur-md border border-white/10 flex items-center gap-2">
                                             <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
                                             <span className="text-[10px] font-black uppercase tracking-widest">Live Feed</span>
@@ -95,7 +182,7 @@ export default function YogaVision() {
                                         </div>
                                     </div>
 
-                                    <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
+                                    <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end z-20">
                                         <div className="p-4 rounded-2xl bg-black/60 backdrop-blur-md border border-white/10 max-w-xs">
                                             <div className="flex items-center gap-2 mb-2 text-teal-400">
                                                 <Info size={14} />
@@ -111,7 +198,7 @@ export default function YogaVision() {
                                             </div>
                                             <div className="p-4 rounded-2xl bg-black/60 backdrop-blur-md border border-white/10 text-right">
                                                 <div className="text-[10px] font-black uppercase tracking-widest text-teal-400 mb-1">Pose Match</div>
-                                                <div className="text-2xl font-black">94%</div>
+                                                <div className="text-2xl font-black">{poseMatch.toFixed(0)}%</div>
                                             </div>
                                         </div>
                                     </div>

@@ -2,8 +2,22 @@
 
 import { motion } from "framer-motion";
 import { Activity, Shield, Heart, ArrowRight, ChevronDown } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export default function HealthHero() {
+    const [bpm, setBpm] = useState(72);
+    const [sleepScore, setSleepScore] = useState(85);
+    const [healthScore, setHealthScore] = useState(92);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setBpm(70 + Math.floor(Math.random() * 6));
+            setSleepScore(prev => Math.min(100, Math.max(80, prev + (Math.random() - 0.5))));
+            setHealthScore(prev => Math.min(100, Math.max(90, prev + (Math.random() - 0.5))));
+        }, 3000);
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <section id="health-home" className="relative w-full min-h-[90vh] pt-32 pb-20 px-4 flex items-center justify-center overflow-hidden bg-teal-50">
             {/* Medical Theme Background Elements */}
@@ -105,7 +119,7 @@ export default function HealthHero() {
                                     <Heart className="w-16 h-16 animate-beat fill-teal-600/10" />
                                     <div className="text-center">
                                         <div className="text-sm font-bold uppercase tracking-wider text-teal-400">Heart Rate</div>
-                                        <div className="text-4xl font-black text-teal-900">72 BPM</div>
+                                        <div className="text-4xl font-black text-teal-900 leading-none">{bpm} <span className="text-sm font-bold opacity-40">BPM</span></div>
                                     </div>
                                 </div>
                             </motion.div>
@@ -122,7 +136,7 @@ export default function HealthHero() {
                             </div>
                             <div>
                                 <div className="text-[10px] text-gray-400 uppercase font-bold">Sleep Quality</div>
-                                <div className="text-lg font-bold text-teal-900 font-poppins">85% Excellent</div>
+                                <div className="text-lg font-bold text-teal-900 font-poppins">{sleepScore.toFixed(0)}% Excellent</div>
                             </div>
                         </motion.div>
 
@@ -136,7 +150,7 @@ export default function HealthHero() {
                             </div>
                             <div>
                                 <div className="text-[10px] text-gray-400 uppercase font-bold">Health Score</div>
-                                <div className="text-lg font-bold text-teal-900 font-poppins">92/100</div>
+                                <div className="text-lg font-bold text-teal-900 font-poppins">{healthScore.toFixed(0)}/100</div>
                             </div>
                         </motion.div>
                     </div>
@@ -153,5 +167,18 @@ export default function HealthHero() {
                 <ChevronDown className="w-5 h-5" />
             </motion.div>
         </section>
+    );
+}
+
+{/* Scroll Indicator */ }
+<motion.div
+    animate={{ y: [0, 10, 0] }}
+    transition={{ duration: 2, repeat: Infinity }}
+    className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-teal-600/40"
+>
+    <span className="text-[10px] items-center font-bold uppercase tracking-[0.2em]">Analysis</span>
+    <ChevronDown className="w-5 h-5" />
+</motion.div>
+        </section >
     );
 }
