@@ -84,9 +84,9 @@ export default function Hero() {
                     </motion.div>
 
                     <h1 className="text-[28px] sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.2] tracking-tight text-white line-clamp-3">
-                        AI-Based
+                        Social Distancing
                         <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 animate-gradient-x pb-1 md:pb-2">
-                            Social Distancing
+                            using Image Processing
                         </span>
                         Monitoring
                     </h1>
