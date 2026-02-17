@@ -92,7 +92,7 @@ export default function Footer({ currentView = "portfolio" }: FooterProps) {
 
             <div className={`flex flex-col md:flex-row justify-between items-center mt-16 pt-8 border-t max-w-7xl mx-auto px-6 relative z-10 text-sm ${isLight ? "border-slate-100 text-slate-400" : "border-white/5 text-gray-500"
                 }`}>
-                <p>&copy; {new Date().getFullYear()} SocialSense AI. Project by Derlin Shaju.</p>
+                <p>&copy; {new Date().getFullYear()} Social Distancing using Image Processing. Project by Derlin Shaju.</p>
 
                 <button
                     onClick={scrollToTop}

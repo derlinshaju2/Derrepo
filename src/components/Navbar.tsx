@@ -207,7 +207,7 @@ export default function Navbar({ currentView, onViewChange }: NavbarProps) {
 
                         <div className={`p-6 text-center text-xs uppercase tracking-widest border-t ${currentView === "portfolio" ? "text-gray-500 border-white/5" : "text-slate-400 border-slate-200"
                             }`}>
-                            {currentView === "portfolio" ? "Derlin Shaju" : "SocialSense AI"} &copy; 2026
+                            {currentView === "portfolio" ? "Derlin Shaju" : "Social Distancing using Image Processing"} &copy; 2026
                         </div>
                     </motion.div>
                 )}
