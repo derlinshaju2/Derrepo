@@ -97,13 +97,19 @@ export default function Projects({ onViewProject }: ProjectsProps) {
                                     </div>
                                 </div>
 
-                                <div className="flex justify-between items-center pt-4 border-t border-white/5 mt-auto">
-                                    <a href="#" className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors">
-                                        <Github size={16} /> Source Code
+                                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-6 border-t border-white/10 mt-auto">
+                                    <a
+                                        href="https://github.com/derlinshaju2/Derrepo"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center gap-2 text-sm text-cyan-400/80 hover:text-cyan-400 transition-all font-medium py-1"
+                                    >
+                                        <Github size={18} />
+                                        <span>Source Code</span>
                                     </a>
                                     <button
                                         onClick={() => project.id === "socialsense" && onViewProject?.("socialsense")}
-                                        className="flex items-center gap-2 text-sm font-semibold text-cyan-400 hover:text-cyan-300 transition-colors"
+                                        className="flex items-center gap-2 text-sm font-bold text-white bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/20 px-4 py-2 rounded-xl transition-all w-full sm:w-auto justify-center"
                                     >
                                         Live Demo <ExternalLink size={16} />
                                     </button>
