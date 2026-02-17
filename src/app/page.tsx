@@ -19,7 +19,6 @@ import HealthDataInput from "@/components/HealthDataInput";
 import DiseasePrediction from "@/components/DiseasePrediction";
 import BMIVision from "@/components/BMIVision";
 import NutritionAnalysis from "@/components/NutritionAnalysis";
-import HealthMobileShowcase from "@/components/HealthMobileShowcase";
 import YogaVision from "@/components/YogaVision";
 import Footer from "@/components/Footer";
 
@@ -66,7 +65,6 @@ export default function Home() {
           <DiseasePrediction />
           <BMIVision />
           <NutritionAnalysis />
-          <HealthMobileShowcase />
           <YogaVision />
         </>
       )}
