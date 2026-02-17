@@ -6,7 +6,8 @@ import { Camera, AlertCircle, LayoutDashboard, CheckCircle2, Bell, FileText, Bar
 const modules = [
     {
         title: "Image Processing Module",
-        icon: <Camera className="w-8 h-8 text-cyan-400" />,
+        description: "Uses Deep Learning (YOLOv8) to identify and track individuals in high-density surveillance feeds.",
+        icon: <Camera className="w-8 h-8" />,
         features: [
             "Camera input acquisition",
             "Image preprocessing",
@@ -18,7 +19,8 @@ const modules = [
     },
     {
         title: "Distance Monitoring & Alerting",
-        icon: <AlertCircle className="w-8 h-8 text-blue-400" />,
+        description: "Applies Euclidean distance algorithms to detect violations and trigger multi-channel alerts.",
+        icon: <AlertCircle className="w-8 h-8" />,
         features: [
             "Continuous monitoring",
             "Threshold-based violation detection",
@@ -30,7 +32,8 @@ const modules = [
     },
     {
         title: "Visualization & Reporting",
-        icon: <LayoutDashboard className="w-8 h-8 text-purple-400" />,
+        description: "Centralized dashboard for real-time visualization, statistical analysis, and logging.",
+        icon: <LayoutDashboard className="w-8 h-8" />,
         features: [
             "Live video feed display",
             "Overlay bounding boxes",
@@ -44,14 +47,14 @@ const modules = [
 
 export default function Modules() {
     return (
-        <section id="modules" className="py-24 px-6 bg-[#0B1120]">
+        <section id="modules" className="py-24 px-6 bg-white">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-16">
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-sm font-bold tracking-widest text-cyan-400 mb-2 uppercase"
+                        className="text-sm font-bold tracking-widest text-cyan-600 mb-2 uppercase"
                     >
                         Core Components
                     </motion.h2>
@@ -60,7 +63,7 @@ export default function Modules() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-4xl md:text-5xl font-bold text-white"
+                        className="text-4xl md:text-5xl font-bold text-slate-900 mb-6"
                     >
                         System Modules
                     </motion.h3>
@@ -70,27 +73,25 @@ export default function Modules() {
                     {modules.map((module, index) => (
                         <motion.div
                             key={index}
-                            initial={{ opacity: 0, y: 30 }}
+                            initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: index * 0.2 }}
-                            className="glass-card p-8 group relative overflow-hidden"
+                            transition={{ delay: index * 0.1 }}
+                            whileHover={{ y: -10 }}
+                            className="p-8 rounded-3xl bg-slate-50 border border-slate-200 shadow-sm hover:shadow-xl hover:shadow-cyan-500/5 transition-all duration-300 group"
                         >
-                            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-cyan-500/10 to-transparent blur-2xl -mr-8 -mt-8 group-hover:bg-cyan-500/20 transition-all duration-500" />
-
-                            <div className="mb-6 w-16 h-16 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center group-hover:scale-110 group-hover:border-cyan-500/50 transition-all duration-300">
+                            <div className="w-14 h-14 rounded-2xl bg-cyan-500 flex items-center justify-center text-white mb-6 shadow-lg shadow-cyan-500/20 group-hover:scale-110 transition-transform">
                                 {module.icon}
                             </div>
-
-                            <h4 className="text-2xl font-bold text-white mb-6 group-hover:text-cyan-400 transition-colors">
-                                {module.title}
-                            </h4>
-
-                            <ul className="space-y-4">
+                            <h4 className="text-xl font-bold text-slate-900 mb-4">{module.title}</h4>
+                            <p className="text-slate-600 text-sm leading-relaxed mb-6">
+                                {module.description}
+                            </p>
+                            <ul className="space-y-3">
                                 {module.features.map((feature, fIndex) => (
-                                    <li key={fIndex} className="flex items-start gap-3 text-gray-400 text-sm">
-                                        <CheckCircle2 className="w-5 h-5 text-cyan-500/50 flex-shrink-0 mt-0.5" />
-                                        <span>{feature}</span>
+                                    <li key={fIndex} className="flex items-center gap-2 text-sm text-slate-500">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-cyan-500" />
+                                        {feature}
                                     </li>
                                 ))}
                             </ul>

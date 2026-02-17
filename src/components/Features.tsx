@@ -43,67 +43,47 @@ const features = [
 
 export default function Features() {
     return (
-        <section id="features" className="py-24 px-6 bg-[#0F172A]">
+        <section id="features" className="py-24 px-6 bg-slate-50 relative">
             <div className="max-w-7xl mx-auto">
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
-                    <div className="lg:col-span-1">
-                        <motion.h2
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
-                            className="text-sm font-bold tracking-widest text-cyan-400 mb-2 uppercase"
-                        >
-                            Capabilities
-                        </motion.h2>
-                        <motion.h3
+                <div className="text-center mb-16">
+                    <motion.h2
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        className="text-sm font-bold tracking-widest text-cyan-600 mb-2 uppercase"
+                    >
+                        Capabilities
+                    </motion.h2>
+                    <motion.h3
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="text-4xl md:text-5xl font-bold text-slate-900 mb-6"
+                    >
+                        Advanced Features
+                    </motion.h3>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {features.map((feature, index) => (
+                        <motion.div
+                            key={index}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-4xl font-bold text-white mb-6"
+                            transition={{ delay: index * 0.1 }}
+                            whileHover={{ y: -10 }}
+                            className="p-8 rounded-3xl bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:shadow-cyan-500/5 transition-all group"
                         >
-                            Advanced System <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-500">
-                                Features
-                            </span>
-                        </motion.h3>
-                        <p className="text-gray-400 mb-8 leading-relaxed">
-                            Our system combines cutting-edge AI with practical safety requirements to provide a robust solution for modern public health challenges.
-                        </p>
-                        <motion.div
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            className="p-6 rounded-2xl bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20"
-                        >
-                            <h4 className="font-bold text-white mb-2 flex items-center gap-2">
-                                <Zap className="text-cyan-400 w-5 h-5" /> Quick Fact
-                            </h4>
-                            <p className="text-sm text-gray-400">
-                                The system can process up to 30 frames per second on a standard GPU, ensuring no violation goes unnoticed.
+                            <div className="w-12 h-12 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center mb-6 group-hover:bg-cyan-600 group-hover:text-white transition-all">
+                                {feature.icon}
+                            </div>
+                            <h4 className="text-xl font-bold text-slate-900 mb-4">{feature.title}</h4>
+                            <p className="text-slate-500 text-sm leading-relaxed">
+                                {feature.description}
                             </p>
                         </motion.div>
-                    </div>
-
-                    <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {features.map((feature, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.1 }}
-                                className="p-6 rounded-2xl glass-card flex gap-4 border border-white/5 active:scale-95 transition-transform"
-                            >
-                                <div className="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400 flex-shrink-0">
-                                    {feature.icon}
-                                </div>
-                                <div>
-                                    <h4 className="font-bold text-white mb-1">{feature.title}</h4>
-                                    <p className="text-sm text-gray-400 leading-relaxed">{feature.description}</p>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
+                    ))}
                 </div>
             </div>
         </section>

@@ -65,28 +65,35 @@ export default function Navbar({ currentView, onViewChange }: NavbarProps) {
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.5, type: "spring" }}
-                className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 transition-all duration-300 ${scrolled ? "bg-[#0B1120]/80 backdrop-blur-xl border-b border-white/10 shadow-lg" : "bg-transparent"
+                className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 transition-all duration-300 ${scrolled
+                        ? currentView === "portfolio"
+                            ? "bg-[#0B1120]/80 backdrop-blur-xl border-b border-white/10 shadow-lg"
+                            : "bg-white/80 backdrop-blur-xl border-b border-slate-200 shadow-sm"
+                        : "bg-transparent"
                     }`}
             >
                 {/* Logo / Name */}
                 <button
                     onClick={() => onViewChange("portfolio")}
-                    className="text-xl font-bold tracking-tight text-white flex items-center gap-2 group"
+                    className="text-xl font-bold tracking-tight flex items-center gap-2 group"
                 >
                     <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:scale-110 transition-transform">
                         <Zap size={20} className="text-white" />
                     </div>
-                    <span className="hidden sm:block">
+                    <span className={`hidden sm:block transition-colors ${currentView === "portfolio" ? "text-white" : "text-slate-900"}`}>
                         {currentView === "portfolio" ? "Derlin Shaju" : "SocialSense AI"}
                     </span>
                 </button>
 
                 {/* Desktop Menu */}
-                <div className="hidden lg:flex items-center gap-1 p-1 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-md">
+                <div className={`hidden lg:flex items-center gap-1 p-1 rounded-full border transition-all duration-300 ${currentView === "portfolio"
+                        ? "bg-white/[0.03] border-white/10 backdrop-blur-md"
+                        : "bg-slate-100 border-slate-200 backdrop-blur-md"
+                    }`}>
                     {currentView === "socialsense" && (
                         <button
                             onClick={() => onViewChange("portfolio")}
-                            className="px-4 py-2 text-sm font-bold text-cyan-400 hover:text-cyan-300 transition-colors mr-2 border-r border-white/10"
+                            className="px-4 py-2 text-sm font-bold text-cyan-600 hover:text-cyan-700 transition-colors mr-2 border-r border-slate-200"
                         >
                             ← Back to Portfolio
                         </button>
@@ -96,14 +103,19 @@ export default function Navbar({ currentView, onViewChange }: NavbarProps) {
                             key={item.name}
                             href={item.href}
                             onClick={() => setActiveHash(item.href)}
-                            className={`relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${activeHash === item.href ? "text-white" : "text-gray-400 hover:text-white"
+                            className={`relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${activeHash === item.href
+                                    ? currentView === "portfolio" ? "text-white" : "text-cyan-600"
+                                    : currentView === "portfolio" ? "text-gray-400 hover:text-white" : "text-slate-500 hover:text-slate-900"
                                 }`}
                         >
                             {activeHash === item.href && (
                                 <motion.span
                                     layoutId="activePill"
                                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                                    className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-600/20 border border-cyan-500/30 rounded-full -z-10"
+                                    className={`absolute inset-0 border rounded-full -z-10 ${currentView === "portfolio"
+                                            ? "bg-gradient-to-r from-cyan-500/20 to-blue-600/20 border-cyan-500/30"
+                                            : "bg-cyan-50 border-cyan-200"
+                                        }`}
                                 />
                             )}
                             {item.name}
@@ -114,7 +126,10 @@ export default function Navbar({ currentView, onViewChange }: NavbarProps) {
                 {/* Mobile Menu Toggle */}
                 <button
                     onClick={() => setMobileMenuOpen(true)}
-                    className="lg:hidden p-2 text-white bg-white/5 rounded-lg border border-white/10 active:scale-95 transition-all"
+                    className={`lg:hidden p-2 rounded-lg border active:scale-95 transition-all ${currentView === "portfolio"
+                            ? "text-white bg-white/5 border-white/10"
+                            : "text-slate-900 bg-slate-100 border-slate-200"
+                        }`}
                     aria-label="Open Menu"
                 >
                     <Menu size={24} />
@@ -129,13 +144,18 @@ export default function Navbar({ currentView, onViewChange }: NavbarProps) {
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: "100%" }}
                         transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                        className="fixed inset-0 z-[60] bg-[#0B1120] flex flex-col lg:hidden"
+                        className={`fixed inset-0 z-[60] flex flex-col lg:hidden ${currentView === "portfolio" ? "bg-[#0B1120]" : "bg-white"
+                            }`}
                     >
-                        <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
-                            <span className="text-xl font-bold text-white">Menu</span>
+                        <div className={`flex items-center justify-between px-6 py-4 border-b ${currentView === "portfolio" ? "border-white/10" : "border-slate-200"
+                            }`}>
+                            <span className={`text-xl font-bold ${currentView === "portfolio" ? "text-white" : "text-slate-900"}`}>Menu</span>
                             <button
                                 onClick={() => setMobileMenuOpen(false)}
-                                className="p-2 text-white bg-white/5 rounded-lg border border-white/10 active:scale-95 transition-all"
+                                className={`p-2 rounded-lg border active:scale-95 transition-all ${currentView === "portfolio"
+                                        ? "text-white bg-white/5 border-white/10"
+                                        : "text-slate-900 bg-slate-100 border-slate-200"
+                                    }`}
                                 aria-label="Close Menu"
                             >
                                 <X size={24} />
@@ -149,7 +169,7 @@ export default function Navbar({ currentView, onViewChange }: NavbarProps) {
                                         onViewChange("portfolio");
                                         setMobileMenuOpen(false);
                                     }}
-                                    className="flex items-center gap-4 p-4 rounded-xl border bg-cyan-500/10 border-cyan-500/30 text-cyan-400 font-bold mb-4"
+                                    className="flex items-center gap-4 p-4 rounded-xl border bg-cyan-500/10 border-cyan-500/30 text-cyan-600 font-bold mb-4"
                                 >
                                     <Home size={20} />
                                     <span>Back to Portfolio</span>
@@ -168,11 +188,18 @@ export default function Navbar({ currentView, onViewChange }: NavbarProps) {
                                         setMobileMenuOpen(false);
                                     }}
                                     className={`flex items-center gap-4 p-4 rounded-xl border transition-all ${activeHash === item.href
-                                        ? "bg-gradient-to-r from-cyan-500/20 to-blue-600/20 border-cyan-500/30 text-white"
-                                        : "bg-white/5 border-white/5 text-gray-400 hover:text-white"
+                                            ? currentView === "portfolio"
+                                                ? "bg-gradient-to-r from-cyan-500/20 to-blue-600/20 border-cyan-500/30 text-white"
+                                                : "bg-cyan-50 border-cyan-200 text-cyan-600"
+                                            : currentView === "portfolio"
+                                                ? "bg-white/5 border-white/5 text-gray-400 hover:text-white"
+                                                : "bg-slate-50 border-slate-100 text-slate-500 hover:text-slate-900"
                                         }`}
                                 >
-                                    <div className={`p-2 rounded-lg ${activeHash === item.href ? "bg-cyan-500 text-white" : "bg-white/5 text-gray-400"}`}>
+                                    <div className={`p-2 rounded-lg ${activeHash === item.href
+                                            ? "bg-cyan-500 text-white"
+                                            : currentView === "portfolio" ? "bg-white/5 text-gray-400" : "bg-slate-200 text-slate-500"
+                                        }`}>
                                         {item.icon}
                                     </div>
                                     <span className="text-lg font-medium">{item.name}</span>
@@ -180,7 +207,8 @@ export default function Navbar({ currentView, onViewChange }: NavbarProps) {
                             ))}
                         </div>
 
-                        <div className="p-6 text-center text-gray-500 text-xs uppercase tracking-widest border-t border-white/5">
+                        <div className={`p-6 text-center text-xs uppercase tracking-widest border-t ${currentView === "portfolio" ? "text-gray-500 border-white/5" : "text-slate-400 border-slate-200"
+                            }`}>
                             {currentView === "portfolio" ? "Derlin Shaju" : "SocialSense AI"} &copy; 2026
                         </div>
                     </motion.div>

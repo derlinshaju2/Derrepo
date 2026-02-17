@@ -27,7 +27,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-[#0B1120]">
+    <main className={`min-h-screen transition-colors duration-700 ${view === "portfolio" ? "bg-[#0B1120]" : "bg-slate-50"}`}>
       <Navbar currentView={view} onViewChange={handleViewChange} />
 
       {view === "portfolio" ? (
@@ -51,8 +51,8 @@ export default function Home() {
         </>
       )}
 
-      <Contact />
-      <Footer />
+      <Contact currentView={view} />
+      <Footer currentView={view} />
     </main>
   );
 }
