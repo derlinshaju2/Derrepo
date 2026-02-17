@@ -8,19 +8,40 @@ export default function Demo() {
     const [isMonitoring, setIsMonitoring] = useState(false);
     const [violations, setViolations] = useState(0);
     const [status, setStatus] = useState("Idle");
-    const containerRef = useRef<HTMLDivElement>(null);
+    const [mediaType, setMediaType] = useState<"camera" | "upload" | null>(null);
+    const [mediaUrl, setMediaUrl] = useState<string | null>(null);
+    const [activeDetections, setActiveDetections] = useState<any[]>([]);
 
+    const containerRef = useRef<HTMLDivElement>(null);
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const fileInputRef = useRef<HTMLInputElement>(null);
+    const streamRef = useRef<MediaStream | null>(null);
+
+    // Dynamic mock detection logic
     useEffect(() => {
         let interval: any;
         if (isMonitoring) {
-            setStatus("Live Monitoring");
             interval = window.setInterval(() => {
-                if (Math.random() > 0.7) {
-                    setViolations(prev => prev + 1);
+                // Generate 2-4 random detections
+                const count = Math.floor(Math.random() * 3) + 2;
+                const newDetections = Array.from({ length: count }).map((_, i) => ({
+                    id: Date.now() + i,
+                    top: `${Math.random() * 60 + 10}%`,
+                    left: `${Math.random() * 70 + 5}%`,
+                    width: `${Math.random() * 10 + 10}%`,
+                    height: `${Math.random() * 20 + 20}%`,
+                    type: Math.random() > 0.7 ? "violation" : "safe"
+                }));
+
+                setActiveDetections(newDetections);
+
+                const violationCount = newDetections.filter(d => d.type === "violation").length;
+                if (violationCount > 0) {
+                    setViolations(prev => prev + violationCount);
                 }
             }, 3000);
         } else {
-            setStatus("Idle");
+            setActiveDetections([]);
             setViolations(0);
         }
         return () => {
@@ -28,20 +49,52 @@ export default function Demo() {
         };
     }, [isMonitoring]);
 
-    const handleUpload = () => {
-        setStatus("Uploading Video...");
-        setTimeout(() => {
+    const startCamera = async () => {
+        try {
+            if (isMonitoring && mediaType === "camera") {
+                stopMonitoring();
+                return;
+            }
+
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            if (videoRef.current) {
+                videoRef.current.srcObject = stream;
+            }
+            streamRef.current = stream;
+            setMediaType("camera");
             setIsMonitoring(true);
-            setStatus("Processing Uploaded Feed");
-        }, 1500);
+            setStatus("Live Camera Feed");
+            setMediaUrl(null);
+        } catch (err) {
+            console.error("Error accessing camera:", err);
+            setStatus("Camera Access Denied");
+        }
     };
 
-    const mockDetections = [
-        { id: 1, top: "20%", left: "30%", width: "15%", height: "40%", type: "safe" },
-        { id: 2, top: "25%", left: "55%", width: "12%", height: "35%", type: "safe" },
-        { id: 3, top: "40%", left: "45%", width: "15%", height: "45%", type: "violation" },
-        { id: 4, top: "42%", left: "50%", width: "12%", height: "38%", type: "violation" },
-    ];
+    const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            if (mediaUrl) URL.revokeObjectURL(mediaUrl);
+            const url = URL.createObjectURL(file);
+            setMediaUrl(url);
+            setMediaType("upload");
+            setIsMonitoring(true);
+            setStatus(file.type.startsWith("video") ? "Processing Video Feed" : "Analyzing Photo");
+        }
+    };
+
+    const stopMonitoring = () => {
+        if (streamRef.current) {
+            streamRef.current.getTracks().forEach(track => track.stop());
+            streamRef.current = null;
+        }
+        if (videoRef.current) {
+            videoRef.current.srcObject = null;
+        }
+        setIsMonitoring(false);
+        setMediaType(null);
+        setStatus("Idle");
+    };
 
     return (
         <section id="demo" className="py-24 px-6 bg-[#0B1120]">
@@ -69,27 +122,38 @@ export default function Demo() {
                     {/* Controls */}
                     <div className="lg:col-span-1 space-y-4">
                         <button
-                            onClick={() => setIsMonitoring(!isMonitoring)}
-                            className={`w-full p-6 rounded-2xl flex items-center justify-between transition-all ${isMonitoring
+                            onClick={startCamera}
+                            className={`w-full p-6 rounded-2xl flex items-center justify-between transition-all ${isMonitoring && mediaType === "camera"
                                 ? "bg-red-500/10 border border-red-500/50 text-red-500"
                                 : "bg-cyan-500/10 border border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/20"
                                 }`}
                         >
                             <div className="flex items-center gap-4">
-                                {isMonitoring ? <Square className="fill-current" /> : <Camera />}
-                                <span className="font-bold">{isMonitoring ? "Stop Camera" : "Start Camera"}</span>
+                                {isMonitoring && mediaType === "camera" ? <Square className="fill-current" /> : <Camera />}
+                                <span className="font-bold">{isMonitoring && mediaType === "camera" ? "Stop Camera" : "Start Camera"}</span>
                             </div>
                         </button>
 
                         <button
-                            onClick={handleUpload}
-                            className="w-full p-6 rounded-2xl bg-white/5 border border-white/10 text-white flex items-center justify-between hover:bg-white/10 transition-all group"
+                            onClick={() => fileInputRef.current?.click()}
+                            className={`w-full p-6 rounded-2xl flex items-center justify-between transition-all ${isMonitoring && mediaType === "upload"
+                                ? "bg-blue-500/20 border border-blue-500/50 text-blue-400 font-bold"
+                                : "bg-white/5 border border-white/10 text-white hover:bg-white/10"
+                                } group`}
                         >
                             <div className="flex items-center gap-4">
                                 <Upload className="group-hover:text-cyan-400 transition-colors" />
-                                <span className="font-bold">Upload Video</span>
+                                <span className="font-bold">Upload Media</span>
                             </div>
                         </button>
+
+                        <input
+                            type="file"
+                            ref={fileInputRef}
+                            onChange={handleFileUpload}
+                            className="hidden"
+                            accept="image/*,video/*"
+                        />
 
                         <div className="p-6 rounded-2xl bg-[#0F172A] border border-white/5 space-y-6">
                             <div>
@@ -119,6 +183,15 @@ export default function Demo() {
                                 )}
                             </AnimatePresence>
                         </div>
+
+                        {isMonitoring && (
+                            <button
+                                onClick={stopMonitoring}
+                                className="w-full py-4 rounded-xl border border-white/10 text-gray-500 text-xs font-bold hover:text-white hover:bg-red-500/10 hover:border-red-500/20 transition-all"
+                            >
+                                Reset Monitoring Engine
+                            </button>
+                        )}
                     </div>
 
                     {/* Simulation Display */}
@@ -127,8 +200,37 @@ export default function Demo() {
                             ref={containerRef}
                             className="relative aspect-video rounded-3xl bg-black overflow-hidden border border-white/10 shadow-2xl group"
                         >
-                            {/* Placeholder Mock Feed */}
-                            <div className="absolute inset-0 grayscale opacity-40 bg-[url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200')] bg-cover bg-center" />
+                            {/* Real Camera Feed */}
+                            <video
+                                ref={videoRef}
+                                autoPlay
+                                playsInline
+                                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${mediaType === "camera" ? "opacity-100" : "opacity-0"}`}
+                            />
+
+                            {/* Uploaded Media (Image or Video) */}
+                            {mediaUrl && (
+                                mediaUrl.includes("video") || (fileInputRef.current?.files?.[0]?.type?.includes("video")) ? (
+                                    <video
+                                        src={mediaUrl}
+                                        autoPlay
+                                        loop
+                                        muted
+                                        className="absolute inset-0 w-full h-full object-cover"
+                                    />
+                                ) : (
+                                    <img
+                                        src={mediaUrl}
+                                        className="absolute inset-0 w-full h-full object-cover"
+                                        alt="Uploaded violation source"
+                                    />
+                                )
+                            )}
+
+                            {/* Placeholder Mock Feed (Idle) */}
+                            {!isMonitoring && (
+                                <div className="absolute inset-0 grayscale opacity-40 bg-[url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200')] bg-cover bg-center" />
+                            )}
 
                             {/* Scanning Effect */}
                             <AnimatePresence>
@@ -145,21 +247,25 @@ export default function Demo() {
                             {/* UI Overlays */}
                             <div className="absolute top-6 left-6 z-20 flex items-center gap-3 px-3 py-1.5 rounded-full bg-black/50 backdrop-blur-md border border-white/20">
                                 <div className={`w-2 h-2 rounded-full ${isMonitoring ? "bg-red-500 animate-pulse" : "bg-gray-600"}`} />
-                                <span className="text-[10px] font-bold text-white uppercase tracking-widest">REC: FEED_01</span>
+                                <span className="text-[10px] font-bold text-white uppercase tracking-widest">
+                                    {mediaType === "camera" ? "REC: LIVE_FEED" : mediaType === "upload" ? "PROC: FILE_SCAN" : "IDLE: NO_SOURCE"}
+                                </span>
                             </div>
 
                             <div className="absolute bottom-6 right-6 z-20 flex flex-col items-end gap-1">
-                                <span className="text-[10px] font-mono text-cyan-400 bg-black/50 px-2 py-1 rounded">2026-02-17 11:15:23</span>
-                                <span className="text-[10px] font-mono text-white/50">CAM_INTERNAL_04</span>
+                                <span className="text-[10px] font-mono text-cyan-400 bg-black/50 px-2 py-1 rounded">
+                                    {new Date().toISOString().split('T')[0]} {new Date().toLocaleTimeString()}
+                                </span>
+                                <span className="text-[10px] font-mono text-white/50">CAM_NODE_{mediaType?.toUpperCase() || "OFFLINE"}</span>
                             </div>
 
                             {/* Mock Detection Boxes */}
-                            {isMonitoring && mockDetections.map((box) => (
+                            {isMonitoring && activeDetections.map((box) => (
                                 <motion.div
                                     key={box.id}
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    className="absolute border-2 z-20"
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    className="absolute border-2 z-20 transition-all duration-500"
                                     style={{
                                         top: box.top,
                                         left: box.left,
@@ -175,12 +281,6 @@ export default function Demo() {
                                     >
                                         {box.type === "violation" ? "VIOLATION" : "SAFE"}
                                     </span>
-                                    {box.type === "violation" && (
-                                        <div className="absolute inset-0 flex items-center justify-center">
-                                            <div className="w-full h-[2px] bg-red-500/50 rotate-45" />
-                                            <div className="w-full h-[2px] bg-red-500/50 -rotate-45" />
-                                        </div>
-                                    )}
                                 </motion.div>
                             ))}
 
