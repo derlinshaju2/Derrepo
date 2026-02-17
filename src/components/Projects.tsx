@@ -69,10 +69,10 @@ export default function Projects({ onViewProject }: ProjectsProps) {
 
                                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black/40 backdrop-blur-sm z-20">
                                         <button
-                                            onClick={() => (project.id === "socialsense" || project.id === "healthguard") && onViewProject?.(project.id)}
+                                            onClick={() => (project.id === "socialsense" || project.id === "healthguard") && onViewProject?.(project.id as any)}
                                             className="px-6 py-2 rounded-full bg-white/10 border border-white/20 text-white backdrop-blur-md hover:bg-white/20 transition-all transform translate-y-4 group-hover:translate-y-0"
                                         >
-                                            {project.id === "socialsense" ? "View AI System" : "View Case Study"}
+                                            View AI System
                                         </button>
                                     </div>
                                 </div>
@@ -108,7 +108,7 @@ export default function Projects({ onViewProject }: ProjectsProps) {
                                         <span>Source Code</span>
                                     </a>
                                     <button
-                                        onClick={() => project.id === "socialsense" && onViewProject?.("socialsense")}
+                                        onClick={() => (project.id === "socialsense" || project.id === "healthguard") && onViewProject?.(project.id as any)}
                                         className="flex items-center gap-2 text-sm font-bold text-white bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/20 px-4 py-2 rounded-xl transition-all w-full sm:w-auto justify-center"
                                     >
                                         Live Demo <ExternalLink size={16} />
