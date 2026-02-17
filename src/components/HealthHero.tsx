@@ -169,16 +169,3 @@ export default function HealthHero() {
         </section>
     );
 }
-
-{/* Scroll Indicator */ }
-<motion.div
-    animate={{ y: [0, 10, 0] }}
-    transition={{ duration: 2, repeat: Infinity }}
-    className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-teal-600/40"
->
-    <span className="text-[10px] items-center font-bold uppercase tracking-[0.2em]">Analysis</span>
-    <ChevronDown className="w-5 h-5" />
-</motion.div>
-        </section >
-    );
-}
