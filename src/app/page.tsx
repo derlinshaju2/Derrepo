@@ -14,7 +14,6 @@ import TechStack from "@/components/TechStack";
 import Features from "@/components/Features";
 import Demo from "@/components/Demo";
 import Dashboard from "@/components/Dashboard";
-import AdminPanel from "@/components/AdminPanel";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -47,7 +46,6 @@ export default function Home() {
           <Features />
           <Demo />
           <Dashboard />
-          <AdminPanel />
         </>
       )}
 

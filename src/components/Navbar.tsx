@@ -54,7 +54,6 @@ export default function Navbar({ currentView, onViewChange }: NavbarProps) {
         { name: "Tech", href: "#technologies", icon: <Terminal size={20} /> },
         { name: "Demo", href: "#demo", icon: <Terminal size={20} /> },
         { name: "Dashboard", href: "#dashboard", icon: <BookOpen size={20} /> },
-        { name: "Admin", href: "#admin", icon: <Terminal size={20} /> },
     ];
 
     const navItems = currentView === "portfolio" ? portfolioItems : projectItems;
@@ -66,10 +65,10 @@ export default function Navbar({ currentView, onViewChange }: NavbarProps) {
                 animate={{ y: 0 }}
                 transition={{ duration: 0.5, type: "spring" }}
                 className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 transition-all duration-300 ${scrolled
-                        ? currentView === "portfolio"
-                            ? "bg-[#0B1120]/80 backdrop-blur-xl border-b border-white/10 shadow-lg"
-                            : "bg-white/80 backdrop-blur-xl border-b border-slate-200 shadow-sm"
-                        : "bg-transparent"
+                    ? currentView === "portfolio"
+                        ? "bg-[#0B1120]/80 backdrop-blur-xl border-b border-white/10 shadow-lg"
+                        : "bg-white/80 backdrop-blur-xl border-b border-slate-200 shadow-sm"
+                    : "bg-transparent"
                     }`}
             >
                 {/* Logo / Name */}
@@ -87,8 +86,8 @@ export default function Navbar({ currentView, onViewChange }: NavbarProps) {
 
                 {/* Desktop Menu */}
                 <div className={`hidden lg:flex items-center gap-1 p-1 rounded-full border transition-all duration-300 ${currentView === "portfolio"
-                        ? "bg-white/[0.03] border-white/10 backdrop-blur-md"
-                        : "bg-slate-100 border-slate-200 backdrop-blur-md"
+                    ? "bg-white/[0.03] border-white/10 backdrop-blur-md"
+                    : "bg-slate-100 border-slate-200 backdrop-blur-md"
                     }`}>
                     {currentView === "socialsense" && (
                         <button
@@ -104,8 +103,8 @@ export default function Navbar({ currentView, onViewChange }: NavbarProps) {
                             href={item.href}
                             onClick={() => setActiveHash(item.href)}
                             className={`relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${activeHash === item.href
-                                    ? currentView === "portfolio" ? "text-white" : "text-cyan-600"
-                                    : currentView === "portfolio" ? "text-gray-400 hover:text-white" : "text-slate-500 hover:text-slate-900"
+                                ? currentView === "portfolio" ? "text-white" : "text-cyan-600"
+                                : currentView === "portfolio" ? "text-gray-400 hover:text-white" : "text-slate-500 hover:text-slate-900"
                                 }`}
                         >
                             {activeHash === item.href && (
@@ -113,8 +112,8 @@ export default function Navbar({ currentView, onViewChange }: NavbarProps) {
                                     layoutId="activePill"
                                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                                     className={`absolute inset-0 border rounded-full -z-10 ${currentView === "portfolio"
-                                            ? "bg-gradient-to-r from-cyan-500/20 to-blue-600/20 border-cyan-500/30"
-                                            : "bg-cyan-50 border-cyan-200"
+                                        ? "bg-gradient-to-r from-cyan-500/20 to-blue-600/20 border-cyan-500/30"
+                                        : "bg-cyan-50 border-cyan-200"
                                         }`}
                                 />
                             )}
@@ -127,8 +126,8 @@ export default function Navbar({ currentView, onViewChange }: NavbarProps) {
                 <button
                     onClick={() => setMobileMenuOpen(true)}
                     className={`lg:hidden p-2 rounded-lg border active:scale-95 transition-all ${currentView === "portfolio"
-                            ? "text-white bg-white/5 border-white/10"
-                            : "text-slate-900 bg-slate-100 border-slate-200"
+                        ? "text-white bg-white/5 border-white/10"
+                        : "text-slate-900 bg-slate-100 border-slate-200"
                         }`}
                     aria-label="Open Menu"
                 >
@@ -153,8 +152,8 @@ export default function Navbar({ currentView, onViewChange }: NavbarProps) {
                             <button
                                 onClick={() => setMobileMenuOpen(false)}
                                 className={`p-2 rounded-lg border active:scale-95 transition-all ${currentView === "portfolio"
-                                        ? "text-white bg-white/5 border-white/10"
-                                        : "text-slate-900 bg-slate-100 border-slate-200"
+                                    ? "text-white bg-white/5 border-white/10"
+                                    : "text-slate-900 bg-slate-100 border-slate-200"
                                     }`}
                                 aria-label="Close Menu"
                             >
@@ -188,17 +187,17 @@ export default function Navbar({ currentView, onViewChange }: NavbarProps) {
                                         setMobileMenuOpen(false);
                                     }}
                                     className={`flex items-center gap-4 p-4 rounded-xl border transition-all ${activeHash === item.href
-                                            ? currentView === "portfolio"
-                                                ? "bg-gradient-to-r from-cyan-500/20 to-blue-600/20 border-cyan-500/30 text-white"
-                                                : "bg-cyan-50 border-cyan-200 text-cyan-600"
-                                            : currentView === "portfolio"
-                                                ? "bg-white/5 border-white/5 text-gray-400 hover:text-white"
-                                                : "bg-slate-50 border-slate-100 text-slate-500 hover:text-slate-900"
+                                        ? currentView === "portfolio"
+                                            ? "bg-gradient-to-r from-cyan-500/20 to-blue-600/20 border-cyan-500/30 text-white"
+                                            : "bg-cyan-50 border-cyan-200 text-cyan-600"
+                                        : currentView === "portfolio"
+                                            ? "bg-white/5 border-white/5 text-gray-400 hover:text-white"
+                                            : "bg-slate-50 border-slate-100 text-slate-500 hover:text-slate-900"
                                         }`}
                                 >
                                     <div className={`p-2 rounded-lg ${activeHash === item.href
-                                            ? "bg-cyan-500 text-white"
-                                            : currentView === "portfolio" ? "bg-white/5 text-gray-400" : "bg-slate-200 text-slate-500"
+                                        ? "bg-cyan-500 text-white"
+                                        : currentView === "portfolio" ? "bg-white/5 text-gray-400" : "bg-slate-200 text-slate-500"
                                         }`}>
                                         {item.icon}
                                     </div>
