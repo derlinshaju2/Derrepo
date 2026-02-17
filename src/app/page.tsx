@@ -14,7 +14,6 @@ import TechStack from "@/components/TechStack";
 import Features from "@/components/Features";
 import Demo from "@/components/Demo";
 import Dashboard from "@/components/Dashboard";
-import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -49,7 +48,7 @@ export default function Home() {
         </>
       )}
 
-      <Contact currentView={view} />
+
       <Footer currentView={view} />
     </main>
   );

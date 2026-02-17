@@ -55,8 +55,8 @@ export default function Footer({ currentView = "portfolio" }: FooterProps) {
                                 target={href.startsWith("http") ? "_blank" : "_self"}
                                 rel={href.startsWith("http") ? "noopener noreferrer" : ""}
                                 className={`p-3 rounded-full border transition-all duration-300 transform hover:-translate-y-1 shadow-sm ${isLight
-                                        ? "bg-slate-50 border-slate-200 text-slate-600 hover:bg-cyan-50 hover:border-cyan-200 hover:text-cyan-600 shadow-slate-200/50"
-                                        : "bg-white/5 border-white/10 text-gray-400 hover:bg-cyan-500/20 hover:border-cyan-500/50 hover:text-cyan-400"
+                                    ? "bg-slate-50 border-slate-200 text-slate-600 hover:bg-cyan-50 hover:border-cyan-200 hover:text-cyan-600 shadow-slate-200/50"
+                                    : "bg-white/5 border-white/10 text-gray-400 hover:bg-cyan-500/20 hover:border-cyan-500/50 hover:text-cyan-400"
                                     }`}
                             >
                                 <Icon size={20} />
@@ -69,7 +69,7 @@ export default function Footer({ currentView = "portfolio" }: FooterProps) {
                 <div>
                     <h3 className={`font-bold mb-6 uppercase tracking-wider text-sm ${isLight ? "text-slate-900" : "text-white"}`}>Navigation</h3>
                     <ul className="space-y-4">
-                        {["Home", "About", "Modules", "Architecture", "Demo", "Contact"].map((item) => (
+                        {["Home", "About", "Modules", "Architecture", "Demo"].map((item) => (
                             <li key={item}>
                                 <a
                                     href={`#${item.toLowerCase()}`}
@@ -85,20 +85,8 @@ export default function Footer({ currentView = "portfolio" }: FooterProps) {
                     </ul>
                 </div>
 
-                {/* Contact Info */}
-                <div>
-                    <h3 className={`font-bold mb-6 uppercase tracking-wider text-sm ${isLight ? "text-slate-900" : "text-white"}`}>Contact</h3>
-                    <ul className="space-y-4 text-sm">
-                        <li className="flex flex-col gap-1">
-                            <span className="text-slate-400 font-medium uppercase text-xs">Email</span>
-                            <a href="mailto:info@socialsense.ai" className={`transition-colors ${isLight ? "text-slate-600 hover:text-cyan-600" : "text-gray-400 hover:text-white"}`}>info@socialsense.ai</a>
-                        </li>
-                        <li className="flex flex-col gap-1">
-                            <span className="text-slate-400 font-medium uppercase text-xs">Dev Team</span>
-                            <span className={isLight ? "text-slate-600" : "text-gray-400"}>SocialSense AI Lab</span>
-                        </li>
-                    </ul>
-                </div>
+                {/* Social Placeholder or Empty Column to maintain spacing */}
+                <div className="hidden md:block" />
 
             </div>
 

@@ -45,7 +45,6 @@ export default function Navbar({ currentView, onViewChange }: NavbarProps) {
         { name: "Skills", href: "#skills", icon: <Zap size={20} /> },
         { name: "Projects", href: "#projects", icon: <Briefcase size={20} /> },
         { name: "Certifications", href: "#certifications", icon: <BookOpen size={20} /> },
-        { name: "Contact", href: "#contact", icon: <Terminal size={20} /> },
     ];
 
     const projectItems = [
