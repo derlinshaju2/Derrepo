@@ -1,6 +1,10 @@
-# Derlin Shaju - Liquid Glass Modern Portfolio
+# SocialSense AI: Social Distancing Monitoring System
 
-A premium, futuristic portfolio website built with the latest web technologies, featuring a stunning liquid glass aesthetic and smooth animations.
+[![Deploy Next.js site to Pages](https://github.com/derlinshaju2/Derrepo/actions/workflows/deploy.yml/badge.svg)](https://github.com/derlinshaju2/Derrepo/actions/workflows/deploy.yml)
+
+**Live Demo**: [https://derlinshaju2.github.io/Derrepo/](https://derlinshaju2.github.io/Derrepo/)
+
+An AI-Based Social Distancing Monitoring System built with Next.js, Tailwind CSS, and Framer Motion.
 
 ## 🚀 Tech Stack
 
