@@ -11,10 +11,10 @@ export default function Demo() {
     const containerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        let interval: NodeJS.Timeout;
+        let interval: any;
         if (isMonitoring) {
             setStatus("Live Monitoring");
-            interval = setInterval(() => {
+            interval = window.setInterval(() => {
                 if (Math.random() > 0.7) {
                     setViolations(prev => prev + 1);
                 }
@@ -23,8 +23,18 @@ export default function Demo() {
             setStatus("Idle");
             setViolations(0);
         }
-        return () => clearInterval(interval);
+        return () => {
+            if (interval) window.clearInterval(interval);
+        };
     }, [isMonitoring]);
+
+    const handleUpload = () => {
+        setStatus("Uploading Video...");
+        setTimeout(() => {
+            setIsMonitoring(true);
+            setStatus("Processing Uploaded Feed");
+        }, 1500);
+    };
 
     const mockDetections = [
         { id: 1, top: "20%", left: "30%", width: "15%", height: "40%", type: "safe" },
@@ -61,8 +71,8 @@ export default function Demo() {
                         <button
                             onClick={() => setIsMonitoring(!isMonitoring)}
                             className={`w-full p-6 rounded-2xl flex items-center justify-between transition-all ${isMonitoring
-                                    ? "bg-red-500/10 border border-red-500/50 text-red-500"
-                                    : "bg-cyan-500/10 border border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/20"
+                                ? "bg-red-500/10 border border-red-500/50 text-red-500"
+                                : "bg-cyan-500/10 border border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/20"
                                 }`}
                         >
                             <div className="flex items-center gap-4">
@@ -71,9 +81,12 @@ export default function Demo() {
                             </div>
                         </button>
 
-                        <button className="w-full p-6 rounded-2xl bg-white/5 border border-white/10 text-white flex items-center justify-between hover:bg-white/10 transition-all">
+                        <button
+                            onClick={handleUpload}
+                            className="w-full p-6 rounded-2xl bg-white/5 border border-white/10 text-white flex items-center justify-between hover:bg-white/10 transition-all group"
+                        >
                             <div className="flex items-center gap-4">
-                                <Upload />
+                                <Upload className="group-hover:text-cyan-400 transition-colors" />
                                 <span className="font-bold">Upload Video</span>
                             </div>
                         </button>

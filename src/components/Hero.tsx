@@ -23,12 +23,12 @@ export default function Hero() {
     const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
     useEffect(() => {
-        let timeout: NodeJS.Timeout;
+        let timeout: any;
         const currentRole = roles[roleIndex];
 
         if (isDeleting) {
             if (displayText.length > 0) {
-                timeout = setTimeout(() => {
+                timeout = window.setTimeout(() => {
                     setDisplayText(currentRole.substring(0, displayText.length - 1));
                 }, 30);
             } else {
@@ -37,15 +37,19 @@ export default function Hero() {
             }
         } else {
             if (displayText.length < currentRole.length) {
-                timeout = setTimeout(() => {
+                timeout = window.setTimeout(() => {
                     setDisplayText(currentRole.substring(0, displayText.length + 1));
-                }, 80);
+                }, 100);
             } else {
-                timeout = setTimeout(() => setIsDeleting(true), 2500);
+                timeout = window.setTimeout(() => {
+                    setIsDeleting(true);
+                }, 2000);
             }
         }
 
-        return () => clearTimeout(timeout);
+        return () => {
+            if (timeout) window.clearTimeout(timeout);
+        };
     }, [displayText, isDeleting, roleIndex]);
 
     return (
