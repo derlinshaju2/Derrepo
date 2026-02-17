@@ -1,22 +1,29 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GraduationCap, Award } from "lucide-react";
+import { ShieldCheck, Activity, Cpu, Bell } from "lucide-react";
 
 export default function About() {
-    const education = [
+    const highlights = [
         {
-            year: "2021 - 2025",
-            degree: "B.Tech in AI & Data Science",
-            institution: "APJ Abdul Kalam Technological University",
-            description: "Focus on Machine Learning, Neural Networks, and Data Mining. CGPA: 8.0.",
-            icon: <GraduationCap />
+            title: "Automated Monitoring",
+            description: "Replace manual supervision with 24/7 AI-powered surveillance that never tires.",
+            icon: <Cpu className="w-6 h-6" />
         },
-        // Can add more items here
+        {
+            title: "Real-Time Analysis",
+            description: "Process video feeds instantly to detect distance violations as they happen.",
+            icon: <Activity className="w-6 h-6" />
+        },
+        {
+            title: "Instant Alerting",
+            description: "Configure audible and visual alarms to enforce safety protocols immediately.",
+            icon: <Bell className="w-6 h-6" />
+        },
     ];
 
     return (
-        <section id="about" className="py-16 relative overflow-hidden bg-gradient-to-br from-[#0B1120] to-[#0F172A]">
+        <section id="about" className="py-24 relative overflow-hidden bg-gradient-to-br from-[#0B1120] to-[#0F172A]">
             <div className="absolute top-0 right-0 w-full h-[300px] bg-gradient-to-b from-cyan-900/10 to-transparent pointer-events-none" />
 
             <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -27,72 +34,54 @@ export default function About() {
                     transition={{ duration: 0.8 }}
                     className="flex flex-col justify-center"
                 >
-                    <h2 className="text-sm font-bold tracking-widest text-cyan-400 mb-2 uppercase">My Journey</h2>
+                    <h2 className="text-sm font-bold tracking-widest text-cyan-400 mb-2 uppercase">Safety First</h2>
                     <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 md:mb-8 leading-tight">
-                        Driven by Data,<br />
+                        What is <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
-                            Inspired by Intelligence.
+                            Social Distancing Detection?
                         </span>
                     </h3>
 
                     <div className="space-y-6 text-gray-400 text-base leading-relaxed">
                         <p>
-                            I am an AI enthusiast dedicated to bridging the gap between raw data and actionable intelligence. My academic journey has equipped me with a robust understanding of <span className="text-white font-medium">Deep Learning architectures</span> and <span className="text-white font-medium">Statistical Modeling</span>.
+                            Social distancing detection is an AI-driven technique used to measure the physical distance between individuals in a monitored area. By leveraging <span className="text-white font-medium">Computer Vision</span> and <span className="text-white font-medium">Deep Learning</span>, the system identifies people and calculates the gaps between them in real-time.
                         </p>
                         <p>
-                            Whether it's deploying a computer vision model on an edge device or optimizing a recommendation engine, I thrive on the challenges that modern AI presents.
+                            In public health environments, maintaining space is critical to preventing the spread of contagious diseases. Our system automates this monitoring process, ensuring high compliance without the need for constant human intervention.
                         </p>
+                        <div className="pt-4 border-l-2 border-cyan-500/30 pl-6 italic">
+                            "Automation is the key to scalable safety enforcement in high-traffic zones like malls, airports, and hospitals."
+                        </div>
                     </div>
-
-
                 </motion.div>
 
-                {/* Timeline Glass Card */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="relative w-full"
+                    className="relative"
                 >
-                    {/* Decorative blurred backdrop */}
-                    <div className="absolute inset-0 bg-blue-500/10 blur-3xl transform rotate-6 rounded-[3rem] -z-10" />
-
-                    <div className="bg-white/[0.03] backdrop-blur-2xl border border-white/10 rounded-[2rem] p-6 md:p-8 shadow-2xl relative overflow-hidden">
-
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl transform translate-x-10 -translate-y-10" />
-
-                        <h4 className="text-xl font-bold text-white mb-8 flex items-center gap-3">
-                            <Award className="text-cyan-400" /> Education & Milestones
-                        </h4>
-
-                        <div className="space-y-8 relative">
-                            {/* Vertical Line */}
-                            <div className="absolute left-[19px] top-4 bottom-4 w-0.5 bg-gradient-to-b from-cyan-500/50 to-transparent" />
-
-                            {education.map((item, i) => (
-                                <div key={i} className="relative pl-12 group">
-                                    <div className="absolute left-0 top-1 w-10 h-10 rounded-full bg-[#0B1120] border border-cyan-500/30 flex items-center justify-center z-10 shadow-[0_0_15px_rgba(6,182,212,0.2)] group-hover:scale-110 transition-transform duration-300">
-                                        <span className="text-cyan-400 group-hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.8)] transition-all">
-                                            {item.icon}
-                                        </span>
-                                    </div>
-
-                                    <span className="text-xs font-semibold text-cyan-400 bg-cyan-500/10 px-2 py-1 rounded border border-cyan-500/20 mb-2 inline-block">
-                                        {item.year}
-                                    </span>
-                                    <h5 className="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">
-                                        {item.degree}
-                                    </h5>
-                                    <p className="text-sm text-gray-400">{item.institution}</p>
-                                    <p className="text-sm text-gray-500 mt-2 leading-relaxed">
-                                        {item.description}
-                                    </p>
+                    <div className="grid grid-cols-1 gap-6 relative z-10">
+                        {highlights.map((item, i) => (
+                            <motion.div
+                                key={i}
+                                whileHover={{ x: 10 }}
+                                className="glass-card p-6 flex gap-6 items-start group"
+                            >
+                                <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 group-hover:bg-cyan-500 group-hover:text-white transition-all duration-300">
+                                    {item.icon}
                                 </div>
-                            ))}
-                        </div>
-
+                                <div>
+                                    <h4 className="text-xl font-bold text-white mb-2">{item.title}</h4>
+                                    <p className="text-gray-400 text-sm leading-relaxed">{item.description}</p>
+                                </div>
+                            </motion.div>
+                        ))}
                     </div>
+
+                    {/* Background decoration */}
+                    <div className="absolute -inset-10 bg-cyan-500/5 blur-3xl rounded-full -z-10 animate-pulse" />
                 </motion.div>
             </div>
         </section>

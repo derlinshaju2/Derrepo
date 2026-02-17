@@ -39,9 +39,11 @@ export default function Navbar() {
     const navItems = [
         { name: "Home", href: "#home", icon: <Home size={20} /> },
         { name: "About", href: "#about", icon: <User size={20} /> },
-        { name: "Skills", href: "#skills", icon: <BookOpen size={20} /> },
-        { name: "Projects", href: "#projects", icon: <Briefcase size={20} /> },
-        { name: "Certifications", href: "#certifications", icon: <Zap size={20} /> },
+        { name: "Modules", href: "#modules", icon: <Briefcase size={20} /> },
+        { name: "Architecture", href: "#architecture", icon: <Zap size={20} /> },
+        { name: "Technologies", href: "#technologies", icon: <Terminal size={20} /> },
+        { name: "Features", href: "#features", icon: <BookOpen size={20} /> },
+        { name: "Demo", href: "#demo", icon: <Terminal size={20} /> },
         { name: "Contact", href: "#contact", icon: <Terminal size={20} /> },
     ];
 
@@ -57,20 +59,14 @@ export default function Navbar() {
             >
                 {/* Logo / Name */}
                 <a href="#home" className="text-xl font-bold tracking-tight text-white flex items-center gap-2">
-                    <div className="w-9 h-9 rounded-full overflow-hidden border-2 border-cyan-500/50 shadow-lg shadow-cyan-500/20">
-                        <Image
-                            src="/1000299898.jpg"
-                            alt="Derlin Shaju"
-                            width={36}
-                            height={36}
-                            className="object-cover w-full h-full"
-                        />
+                    <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20">
+                        <Zap size={20} className="text-white" />
                     </div>
-                    <span className="hidden sm:block">Derlin Shaju</span>
+                    <span className="hidden sm:block">SocialSense AI</span>
                 </a>
 
                 {/* Desktop Menu */}
-                <div className="hidden md:flex items-center gap-1 p-1 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-md">
+                <div className="hidden lg:flex items-center gap-1 p-1 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-md">
                     {navItems.map((item) => (
                         <a
                             key={item.name}
@@ -94,7 +90,7 @@ export default function Navbar() {
                 {/* Mobile Menu Toggle */}
                 <button
                     onClick={() => setMobileMenuOpen(true)}
-                    className="md:hidden p-2 text-white bg-white/5 rounded-lg border border-white/10 active:scale-95 transition-all"
+                    className="lg:hidden p-2 text-white bg-white/5 rounded-lg border border-white/10 active:scale-95 transition-all"
                     aria-label="Open Menu"
                 >
                     <Menu size={24} />
@@ -109,7 +105,7 @@ export default function Navbar() {
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: "100%" }}
                         transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                        className="fixed inset-0 z-[60] bg-[#0B1120] flex flex-col md:hidden"
+                        className="fixed inset-0 z-[60] bg-[#0B1120] flex flex-col lg:hidden"
                     >
                         {/* Header */}
                         <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
@@ -151,7 +147,7 @@ export default function Navbar() {
 
                         {/* Footer decorative */}
                         <div className="p-6 text-center text-gray-500 text-xs uppercase tracking-widest border-t border-white/5">
-                            Derlin Shaju &copy; 2026
+                            SocialSense AI &copy; 2026
                         </div>
                     </motion.div>
                 )}

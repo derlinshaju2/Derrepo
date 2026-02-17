@@ -22,7 +22,7 @@ export default function Contact() {
                         Get In Touch
                     </h2>
                     <p className="text-gray-400 max-w-xl mx-auto">
-                        Have a project in mind or just want to discuss the latest in AI? I'm always open to new opportunities.
+                        Interested in implementing the SocialSense AI system? Contact our team for a full demonstration or deployment consultation.
                     </p>
                 </motion.div>
 
@@ -32,43 +32,40 @@ export default function Contact() {
                         initial={{ opacity: 0, x: -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        className="space-y-8"
+                        className="space-y-6"
                     >
-                        <div className="p-8 rounded-3xl bg-white/[0.02] border border-white/[0.05] backdrop-blur-xl shadow-2xl relative overflow-hidden group hover:border-cyan-500/30 transition-all duration-500">
-                            <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                            <div className="relative z-10 flex items-center gap-6">
-                                <div className="p-4 rounded-2xl bg-cyan-500/10 text-cyan-400 group-hover:scale-110 transition-transform">
-                                    <Mail size={24} />
-                                </div>
-                                <div>
-                                    <h4 className="text-xl font-bold text-white mb-1">Email Me</h4>
-                                    <a href="mailto:derlinshaju2@gmail.com" className="text-gray-400 hover:text-cyan-300 transition-colors">derlinshaju2@gmail.com</a>
-                                </div>
+                        <div className="glass-card p-6 flex items-center gap-6">
+                            <div className="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400">
+                                <Mail size={24} />
+                            </div>
+                            <div>
+                                <h4 className="font-bold text-white">Email Us</h4>
+                                <a href="mailto:support@socialsense.ai" className="text-sm text-gray-400 hover:text-cyan-400 transition-colors">info@socialsense.ai</a>
                             </div>
                         </div>
 
-                        <div className="p-8 rounded-3xl bg-white/[0.02] border border-white/[0.05] backdrop-blur-xl shadow-2xl relative overflow-hidden group hover:border-purple-500/30 transition-all duration-500">
-                            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                            <div className="relative z-10 flex items-center gap-6">
-                                <div className="p-4 rounded-2xl bg-purple-500/10 text-purple-400 group-hover:scale-110 transition-transform">
-                                    <Phone size={24} />
-                                </div>
-                                <div>
-                                    <h4 className="text-xl font-bold text-white mb-1">Call Me</h4>
-                                    <a href="tel:+917561874672" className="text-gray-400 hover:text-purple-300 transition-colors">+91 75618 74672</a>
-                                </div>
+                        <div className="glass-card p-6 flex items-center gap-6">
+                            <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400">
+                                <Linkedin size={24} />
+                            </div>
+                            <div>
+                                <h4 className="font-bold text-white">Project Repository</h4>
+                                <a href="https://github.com/derrepo" className="text-sm text-gray-400 hover:text-blue-400 transition-colors">github.com/socialsense-ai</a>
                             </div>
                         </div>
 
-                        <div className="p-8 rounded-3xl bg-white/[0.02] border border-white/[0.05] backdrop-blur-xl shadow-2xl relative overflow-hidden group hover:border-blue-500/30 transition-all duration-500">
-                            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                            <div className="relative z-10 flex items-center gap-6">
-                                <div className="p-4 rounded-2xl bg-blue-500/10 text-blue-400 group-hover:scale-110 transition-transform">
-                                    <Linkedin size={24} />
+                        <div className="glass-card p-8 border border-white/5">
+                            <h4 className="text-white font-bold mb-6 flex items-center gap-2">
+                                <Users className="text-cyan-400 w-5 h-5" /> Development Team
+                            </h4>
+                            <div className="space-y-4">
+                                <div className="flex justify-between items-center text-sm">
+                                    <span className="text-white font-medium">Derlin Shaju</span>
+                                    <span className="text-gray-500">Lead AI Developer</span>
                                 </div>
-                                <div>
-                                    <h4 className="text-xl font-bold text-white mb-1">Networking</h4>
-                                    <a href="https://www.linkedin.com/in/derlinshaju/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-300 transition-colors">Connect on LinkedIn</a>
+                                <div className="flex justify-between items-center text-sm">
+                                    <span className="text-white font-medium">Project Guide</span>
+                                    <span className="text-gray-500">Computer Vision Expert</span>
                                 </div>
                             </div>
                         </div>
@@ -85,38 +82,32 @@ export default function Contact() {
                             <div className="group relative">
                                 <input
                                     type="text"
-                                    placeholder="Your Name"
+                                    placeholder="Full Name"
                                     className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-white placeholder-gray-500 text-base focus:outline-none focus:border-cyan-500/50 focus:bg-white/10 transition-all duration-300"
                                 />
-                                <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-cyan-500 to-blue-500 group-focus-within:w-full transition-all duration-500" />
                             </div>
 
                             <div className="group relative">
                                 <input
                                     type="email"
-                                    placeholder="Your Email"
+                                    placeholder="Work Email"
                                     className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-white placeholder-gray-500 text-base focus:outline-none focus:border-cyan-500/50 focus:bg-white/10 transition-all duration-300"
                                 />
-                                <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-cyan-500 to-blue-500 group-focus-within:w-full transition-all duration-500" />
                             </div>
 
                             <div className="group relative">
                                 <textarea
                                     rows={4}
-                                    placeholder="Tell me about your project..."
+                                    placeholder="How can we help you with social distancing monitoring?"
                                     className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-white placeholder-gray-500 text-base focus:outline-none focus:border-cyan-500/50 focus:bg-white/10 transition-all duration-300 resize-none"
                                 ></textarea>
-                                <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-cyan-500 to-blue-500 group-focus-within:w-full transition-all duration-500" />
                             </div>
 
                             <button
                                 type="submit"
-                                className="w-full mt-4 group relative overflow-hidden rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 p-[1px] shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all duration-300 border-none"
+                                className="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 active:scale-95 transition-all"
                             >
-                                <span className="relative flex items-center justify-center gap-3 bg-[#0B1120] hover:bg-transparent text-white w-full h-full px-6 py-4 rounded-xl transition-all duration-300">
-                                    <span className="font-bold tracking-wide">Send Message</span>
-                                    <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                                </span>
+                                Request Consultation
                             </button>
                         </div>
                     </motion.form>

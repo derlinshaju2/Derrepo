@@ -6,10 +6,10 @@ import Image from "next/image";
 import { ChevronDown, ArrowRight, Download } from "lucide-react";
 
 const roles = [
-    "Machine Learning Developer",
-    "AI Engineer",
-    "Data Science Enthusiast",
-    "Problem Solver"
+    "Computer Vision Analysis",
+    "Real-Time Detection",
+    "Automated Alerting",
+    "Social Distancing Monitoring"
 ];
 
 export default function Hero() {
@@ -49,11 +49,11 @@ export default function Hero() {
     }, [displayText, isDeleting, roleIndex]);
 
     return (
-        <section id="home" className="relative w-full min-h-[85vh] pt-32 pb-20 px-4 flex items-center justify-center overflow-hidden">
+        <section id="home" className="relative w-full min-h-[90vh] pt-32 pb-20 px-4 flex items-center justify-center overflow-hidden">
             {/* Dynamic Background Elements */}
             <motion.div
                 style={{ y: y1, x: -50 }}
-                className="absolute top-20 left-10 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[120px] mix-blend-screen animate-pulse"
+                className="absolute top-20 left-10 w-[500px] h-[500px] bg-cyan-600/20 rounded-full blur-[120px] mix-blend-screen animate-pulse"
             />
             <motion.div
                 style={{ y: y2, x: 50 }}
@@ -76,37 +76,37 @@ export default function Hero() {
                         className="inline-flex max-w-max items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 backdrop-blur-md mb-2 md:mb-0"
                     >
                         <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-                        <span className="text-[10px] md:text-sm font-medium text-cyan-300 uppercase tracking-wider">Available for work</span>
+                        <span className="text-[10px] md:text-sm font-medium text-cyan-300 uppercase tracking-wider">Live Monitoring Active</span>
                     </motion.div>
 
-                    <h1 className="text-[28px] sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.2] tracking-tight text-white">
-                        Building
+                    <h1 className="text-[28px] sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.2] tracking-tight text-white line-clamp-3">
+                        AI-Based
                         <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 animate-gradient-x pb-1 md:pb-2">
-                            Intelligent
+                            Social Distancing
                         </span>
-                        Future<span className="text-cyan-500">s</span>
+                        Monitoring
                     </h1>
 
                     <div className="h-8 md:h-16 flex items-center justify-center md:justify-start -mt-2 md:mt-0">
                         <span className="text-base sm:text-xl md:text-2xl lg:text-3xl text-gray-300 font-light">
-                            I am a <span className="text-cyan-400 font-semibold border-r-2 border-cyan-400 pr-1 animate-pulse">{displayText}</span>
+                            Powered by <span className="text-cyan-400 font-semibold border-r-2 border-cyan-400 pr-1 animate-pulse">{displayText}</span>
                         </span>
                     </div>
 
                     <p className="text-sm sm:text-lg text-gray-400 max-w-2xl leading-relaxed px-2 md:px-0">
-                        Transforming complex data into intelligent solutions. Specializing in Deep Learning, Computer Vision, and scalable AI architectures.
+                        Real-time human detection and distance estimation using Deep Learning. Automate safety compliance across malls, airports, and hospitals with intelligent alerts.
                     </p>
 
                     <div className="grid grid-cols-1 gap-3 w-full sm:w-auto sm:flex sm:flex-row pt-2 md:pt-4 px-4 md:px-0">
-                        <a href="#projects" className="group relative px-6 py-3.5 md:px-8 md:py-4 rounded-xl md:rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-sm md:text-base font-bold shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/50 hover:scale-[1.02] transition-all overflow-hidden text-center w-full sm:w-auto min-h-[44px] flex items-center justify-center">
+                        <a href="#demo" className="group relative px-6 py-3.5 md:px-8 md:py-4 rounded-xl md:rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-sm md:text-base font-bold shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/50 hover:scale-[1.02] transition-all overflow-hidden text-center w-full sm:w-auto min-h-[44px] flex items-center justify-center">
                             <span className="relative z-10 flex items-center justify-center gap-2">
-                                View My Work <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
+                                View System <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
                             </span>
                             <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                         </a>
 
-                        <a href="/Derlinshaju_Resume1.pdf" download="Derlinshaju_Resume.pdf" className="group px-6 py-3.5 md:px-8 md:py-4 rounded-xl md:rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-white text-sm md:text-base font-semibold hover:bg-white/10 hover:border-cyan-500/50 transition-all flex items-center justify-center gap-2 text-center w-full sm:w-auto min-h-[44px]">
-                            <Download className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-y-1 transition-transform" /> Resume
+                        <a href="#contact" className="group px-6 py-3.5 md:px-8 md:py-4 rounded-xl md:rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-white text-sm md:text-base font-semibold hover:bg-white/10 hover:border-cyan-500/50 transition-all flex items-center justify-center gap-2 text-center w-full sm:w-auto min-h-[44px]">
+                            Request Demo
                         </a>
                     </div>
                 </motion.div>

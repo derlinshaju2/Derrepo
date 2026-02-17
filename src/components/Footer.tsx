@@ -26,19 +26,19 @@ export default function Footer() {
                         viewport={{ once: true }}
                     >
                         <h2 className="text-3xl font-bold font-poppins text-white mb-2 tracking-tight">
-                            Derlin Shaju<span className="text-cyan-400">.</span>
+                            SocialSense <span className="text-cyan-400">AI.</span>
                         </h2>
                         <p className="text-lg text-gray-500 max-w-sm mx-auto md:mx-0 leading-relaxed">
-                            Crafting intelligent digital experiences with a focus on Deep Learning, AI, and modern web technologies.
+                            Protecting public health through intelligent computer vision and real-time social distancing monitoring.
                         </p>
                     </motion.div>
 
                     <div className="flex gap-4 justify-center md:justify-start">
                         {[
-                            { Icon: Github, href: "https://github.com/derlinshaju2" },
+                            { Icon: Github, href: "https://github.com/derrepo" },
                             { Icon: Linkedin, href: "https://www.linkedin.com/in/derlinshaju/" },
                             { Icon: Twitter, href: "#" },
-                            { Icon: Mail, href: "mailto:derlinshaju2@gmail.com" }
+                            { Icon: Mail, href: "mailto:info@socialsense.ai" }
                         ].map(({ Icon, href }, idx) => (
                             <a
                                 key={idx}
@@ -57,7 +57,7 @@ export default function Footer() {
                 <div>
                     <h3 className="text-white font-bold mb-6 uppercase tracking-wider text-sm">Navigation</h3>
                     <ul className="space-y-4">
-                        {["Home", "About", "Skills", "Projects", "Contact"].map((item) => (
+                        {["Home", "About", "Modules", "Architecture", "Demo", "Contact"].map((item) => (
                             <li key={item}>
                                 <a
                                     href={`#${item.toLowerCase()}`}
@@ -77,11 +77,11 @@ export default function Footer() {
                     <ul className="space-y-4 text-sm">
                         <li className="flex flex-col gap-1">
                             <span className="text-gray-600 font-medium uppercase text-xs">Email</span>
-                            <a href="mailto:derlinshaju2@gmail.com" className="hover:text-white transition-colors">derlinshaju2@gmail.com</a>
+                            <a href="mailto:info@socialsense.ai" className="hover:text-white transition-colors">info@socialsense.ai</a>
                         </li>
                         <li className="flex flex-col gap-1">
-                            <span className="text-gray-600 font-medium uppercase text-xs">Location</span>
-                            <span className="text-gray-400">Kerala, India</span>
+                            <span className="text-gray-600 font-medium uppercase text-xs">Dev Team</span>
+                            <span className="text-gray-400">SocialSense AI Lab</span>
                         </li>
                     </ul>
                 </div>
@@ -89,7 +89,7 @@ export default function Footer() {
             </div>
 
             <div className="flex flex-col md:flex-row justify-between items-center mt-16 pt-8 border-t border-white/5 max-w-7xl mx-auto px-6 relative z-10 text-sm">
-                <p>&copy; {new Date().getFullYear()} Derlin Shaju. All rights reserved.</p>
+                <p>&copy; {new Date().getFullYear()} SocialSense AI. Project by Derlin Shaju.</p>
 
                 <button
                     onClick={scrollToTop}
