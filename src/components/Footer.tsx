@@ -35,10 +35,10 @@ export default function Footer({ currentView = "portfolio" }: FooterProps) {
                         viewport={{ once: true }}
                     >
                         <h2 className={`text-3xl font-bold font-poppins mb-2 tracking-tight ${isLight ? "text-slate-900" : "text-white"}`}>
-                            SocialSense <span className="text-cyan-600">AI.</span>
+                            Social Distancing <span className="text-cyan-600">AI.</span>
                         </h2>
                         <p className={`text-lg max-w-sm mx-auto md:mx-0 leading-relaxed ${isLight ? "text-slate-500" : "text-gray-500"}`}>
-                            Protecting public health through intelligent computer vision and real-time social distancing monitoring.
+                            Protecting public health through intelligent computer vision and real-time social distancing using image processing.
                         </p>
                     </motion.div>
 

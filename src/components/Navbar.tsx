@@ -79,7 +79,7 @@ export default function Navbar({ currentView, onViewChange }: NavbarProps) {
                         <Zap size={20} className="text-white" />
                     </div>
                     <span className={`hidden sm:block transition-colors ${currentView === "portfolio" ? "text-white" : "text-slate-900"}`}>
-                        {currentView === "portfolio" ? "Derlin Shaju" : "SocialSense AI"}
+                        {currentView === "portfolio" ? "Derlin Shaju" : "Social Distancing using Image Processing"}
                     </span>
                 </button>
 

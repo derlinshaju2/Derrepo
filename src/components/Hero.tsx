@@ -9,7 +9,7 @@ const roles = [
     "Computer Vision Analysis",
     "Real-Time Detection",
     "Automated Alerting",
-    "Social Distancing Monitoring"
+    "Social Distancing using Image Processing"
 ];
 
 export default function Hero() {
@@ -86,9 +86,9 @@ export default function Hero() {
                     <h1 className="text-[28px] sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.2] tracking-tight text-white line-clamp-3">
                         Social Distancing
                         <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 animate-gradient-x pb-1 md:pb-2">
-                            using Image Processing
+                            using Image
                         </span>
-                        Monitoring
+                        Processing
                     </h1>
 
                     <div className="h-8 md:h-16 flex items-center justify-center md:justify-start -mt-2 md:mt-0">
