@@ -4,27 +4,21 @@ import { motion } from "framer-motion";
 import { ExternalLink, Github, ZoomIn } from "lucide-react";
 import Image from "next/image";
 
-interface ProjectsProps {
-    onViewProject?: (projectId: string) => void;
-}
-
-export default function Projects({ onViewProject }: ProjectsProps) {
+export default function Projects() {
     const projects = [
         {
-            id: "socialsense",
-            title: "SocialSense AI",
+            title: "Social Distancing Monitor",
             description: "Real-time computer vision system utilizing surveillance feeds to detect and alert social distancing violations. Built for public safety protocols.",
-            tech: ["OpenCV", "Python", "YOLOv8"],
-            color: "from-cyan-500 to-blue-500",
-            image: "https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=800&auto=format&fit=crop"
+            tech: ["OpenCV", "Python", "YOLOv5"],
+            color: "from-red-500 to-orange-500",
+            image: "https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=800&auto=format&fit=crop" // Coding/Tech
         },
         {
-            id: "healthguard",
-            title: "AI-Driven Health Monitoring & Proactive Wellness Management System",
-            description: "AI-driven health monitoring system providing disease prediction, BMI analysis, and real-time yoga pose detection for proactive wellness.",
-            tech: ["TensorFlow", "MediaPipe", "React", "Python"],
-            color: "from-teal-500 to-emerald-600",
-            image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop"
+            title: "AI Health Assistant",
+            description: "Predictive health analytics platform tracking vital signs to forecast potential risks and generate personalized wellness plans.",
+            tech: ["TensorFlow", "React", "Node.js"],
+            color: "from-blue-500 to-cyan-500",
+            image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop" // Medical AI
         }
     ];
 
@@ -46,7 +40,8 @@ export default function Projects({ onViewProject }: ProjectsProps) {
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 lg:gap-12">
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
                     {projects.map((project, index) => (
                         <motion.div
                             key={index}
@@ -57,7 +52,10 @@ export default function Projects({ onViewProject }: ProjectsProps) {
                             whileHover={{ y: -10 }}
                             className="group relative flex flex-col p-4 md:p-6 rounded-3xl bg-white/[0.02] border border-white/[0.05] backdrop-blur-3xl shadow-2xl transition-all duration-500 h-full"
                         >
+                            {/* Card Content Grid */}
                             <div className="grid grid-rows-[auto_1fr_auto] gap-4 h-full">
+
+                                {/* Image Area */}
                                 <div className="relative h-64 w-full rounded-2xl overflow-hidden">
                                     <Image
                                         src={project.image}
@@ -67,17 +65,17 @@ export default function Projects({ onViewProject }: ProjectsProps) {
                                     />
                                     <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
 
+                                    {/* Reveal overlay */}
                                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black/40 backdrop-blur-sm z-20">
-                                        <button
-                                            onClick={() => (project.id === "socialsense" || project.id === "healthguard") && onViewProject?.(project.id as any)}
-                                            className="px-6 py-2 rounded-full bg-white/10 border border-white/20 text-white backdrop-blur-md hover:bg-white/20 transition-all transform translate-y-4 group-hover:translate-y-0"
-                                        >
-                                            View AI System
+                                        <button className="px-6 py-2 rounded-full bg-white/10 border border-white/20 text-white backdrop-blur-md hover:bg-white/20 transition-all transform translate-y-4 group-hover:translate-y-0">
+                                            View Case Study
                                         </button>
                                     </div>
                                 </div>
 
+                                {/* Content */}
                                 <div className="relative flex flex-col gap-4">
+                                    {/* Floating Glow - reduced opacity/size to avoid visual clutter */}
                                     <div className={`absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br ${project.color} blur-[60px] opacity-10 group-hover:opacity-30 transition-opacity pointer-events-none`} />
 
                                     <h3 className="text-2xl md:text-3xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-400 transition-all">
@@ -97,22 +95,14 @@ export default function Projects({ onViewProject }: ProjectsProps) {
                                     </div>
                                 </div>
 
-                                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-6 border-t border-white/10 mt-auto">
-                                    <a
-                                        href="https://github.com/derlinshaju2/Derrepo"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex items-center gap-2 text-sm text-cyan-400/80 hover:text-cyan-400 transition-all font-medium py-1"
-                                    >
-                                        <Github size={18} />
-                                        <span>Source Code</span>
+                                {/* Footer / Buttons */}
+                                <div className="flex justify-between items-center pt-4 border-t border-white/5 mt-auto">
+                                    <a href="#" className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors">
+                                        <Github size={16} /> <span className="hidden sm:inline">Source Code</span><span className="sm:hidden">Code</span>
                                     </a>
-                                    <button
-                                        onClick={() => (project.id === "socialsense" || project.id === "healthguard") && onViewProject?.(project.id as any)}
-                                        className="flex items-center gap-2 text-sm font-bold text-white bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/20 px-4 py-2 rounded-xl transition-all w-full sm:w-auto justify-center"
-                                    >
+                                    <a href="#" className="flex items-center gap-2 text-sm font-semibold text-cyan-400 hover:text-cyan-300 transition-colors">
                                         Live Demo <ExternalLink size={16} />
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                         </motion.div>

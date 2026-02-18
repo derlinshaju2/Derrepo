@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -9,7 +9,7 @@ const roles = [
     "Computer Vision Analysis",
     "Real-Time Detection",
     "Automated Alerting",
-    "SocialSense AI"
+    "Social Distancing Monitoring"
 ];
 
 export default function Hero() {
@@ -23,12 +23,12 @@ export default function Hero() {
     const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
     useEffect(() => {
-        let timeout: any;
+        let timeout: NodeJS.Timeout;
         const currentRole = roles[roleIndex];
 
         if (isDeleting) {
             if (displayText.length > 0) {
-                timeout = window.setTimeout(() => {
+                timeout = setTimeout(() => {
                     setDisplayText(currentRole.substring(0, displayText.length - 1));
                 }, 30);
             } else {
@@ -37,19 +37,15 @@ export default function Hero() {
             }
         } else {
             if (displayText.length < currentRole.length) {
-                timeout = window.setTimeout(() => {
+                timeout = setTimeout(() => {
                     setDisplayText(currentRole.substring(0, displayText.length + 1));
-                }, 100);
+                }, 80);
             } else {
-                timeout = window.setTimeout(() => {
-                    setIsDeleting(true);
-                }, 2000);
+                timeout = setTimeout(() => setIsDeleting(true), 2500);
             }
         }
 
-        return () => {
-            if (timeout) window.clearTimeout(timeout);
-        };
+        return () => clearTimeout(timeout);
     }, [displayText, isDeleting, roleIndex]);
 
     return (
@@ -84,10 +80,11 @@ export default function Hero() {
                     </motion.div>
 
                     <h1 className="text-[28px] sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.2] tracking-tight text-white line-clamp-3">
-                        SocialSense
+                        AI-Based
                         <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 animate-gradient-x pb-1 md:pb-2">
-                            AI
+                            Social Distancing
                         </span>
+                        Monitoring
                     </h1>
 
                     <div className="h-8 md:h-16 flex items-center justify-center md:justify-start -mt-2 md:mt-0">

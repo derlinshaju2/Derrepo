@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 import { Camera, Cpu, Search, Ruler, AlertTriangle, Database, LayoutDashboard, ArrowRight } from "lucide-react";
@@ -16,67 +16,102 @@ const steps = [
 
 export default function Architecture() {
     return (
-        <section id="architecture" className="py-24 px-6 bg-slate-50 relative overflow-hidden">
-            {/* Background Pattern */}
-            <div
-                className="absolute inset-0 opacity-[0.4] pointer-events-none"
-                style={{ backgroundImage: `radial-gradient(#cbd5e1 1px, transparent 1px)`, backgroundSize: '40px 40px' }}
-            />
+        <section id="architecture" className="py-24 px-6 bg-[#0F172A] relative overflow-hidden">
+            {/* Background pattern */}
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
+                style={{ backgroundImage: `radial-gradient(#ffffff 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
 
-            <div className="max-w-7xl mx-auto relative z-10">
+            <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-20">
                     <motion.h2
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
-                        className="text-sm font-bold tracking-widest text-cyan-600 mb-2 uppercase"
+                        className="text-sm font-bold tracking-widest text-cyan-400 mb-2 uppercase"
                     >
-                        System Pipeline
+                        How it Works
                     </motion.h2>
                     <motion.h3
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-4xl md:text-5xl font-bold text-slate-900 mb-6"
+                        className="text-4xl md:text-5xl font-bold text-white mb-6"
                     >
-                        Technology Workflow
+                        System Architecture
                     </motion.h3>
+                    <p className="text-gray-400 max-w-2xl mx-auto">
+                        Our intelligent pipeline processes video data through multiple specialized stages to ensure accurate detection and reliable alerting.
+                    </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {steps.map((step, index) => (
-                        <div key={index} className="relative group">
+                <div className="relative">
+                    {/* Desktop Horizontal Flow */}
+                    <div className="hidden lg:grid grid-cols-4 xl:grid-cols-8 gap-4 relative">
+                        {steps.map((step, index) => (
+                            <div key={index} className="flex flex-col items-center">
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    whileInView={{ opacity: 1, scale: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: index * 0.1 }}
+                                    className="w-16 h-16 rounded-2xl glass-panel flex items-center justify-center text-cyan-400 mb-4 group hover:bg-cyan-500 hover:text-white transition-all duration-300 relative z-10"
+                                >
+                                    {step.icon}
+                                    {index < steps.length - 1 && (
+                                        <div className="absolute left-full top-1/2 w-full h-[1px] bg-cyan-500/20 -z-10 translate-x-[-10%]" />
+                                    )}
+                                </motion.div>
+                                <motion.span
+                                    initial={{ opacity: 0 }}
+                                    whileInView={{ opacity: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: index * 0.1 + 0.2 }}
+                                    className="text-sm font-bold text-white text-center mb-1"
+                                >
+                                    {step.name}
+                                </motion.span>
+                                <motion.span
+                                    initial={{ opacity: 0 }}
+                                    whileInView={{ opacity: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: index * 0.1 + 0.3 }}
+                                    className="text-[10px] text-gray-500 text-center uppercase tracking-tight"
+                                >
+                                    {step.description}
+                                </motion.span>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Mobile/Tablet Vertical/Grid Flow */}
+                    <div className="lg:hidden grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        {steps.map((step, index) => (
                             <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
+                                key={index}
+                                initial={{ opacity: 0, x: -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.1 }}
-                                className="h-full p-8 rounded-3xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-all"
+                                className="flex items-center gap-6 glass-card p-6"
                             >
-                                <div className="w-12 h-12 rounded-xl bg-cyan-600 text-white flex items-center justify-center mb-6 group-hover:rotate-6 transition-transform">
+                                <div className="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400">
                                     {step.icon}
                                 </div>
-                                <div className="flex items-center gap-2 mb-2">
-                                    <span className="text-[10px] font-bold text-cyan-600/40 uppercase">Step 0{index + 1}</span>
-                                    <h4 className="text-lg font-bold text-slate-900">{step.name}</h4>
+                                <div>
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-xs font-bold text-cyan-500/50">0{index + 1}</span>
+                                        <h4 className="font-bold text-white">{step.name}</h4>
+                                    </div>
+                                    <p className="text-sm text-gray-400">{step.description}</p>
                                 </div>
-                                <p className="text-slate-500 text-sm leading-relaxed">
-                                    {step.description}
-                                </p>
                             </motion.div>
-
-                            {index !== steps.length - 1 && (
-                                <div className="hidden lg:flex absolute top-1/2 -right-4 w-8 h-8 items-center justify-center text-slate-300 z-20">
-                                    <ArrowRight size={20} />
-                                </div>
-                            )}
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
 
-                {/* Mobile Bottom Decoy */}
-                <div className="mt-12 text-center lg:hidden">
-                    <ArrowRight className="w-8 h-8 text-slate-300 mx-auto rotate-90" />
+                {/* Visual Connector for Mobile */}
+                <div className="mt-16 text-center lg:hidden">
+                    <ArrowRight className="w-8 h-8 text-gray-700 mx-auto rotate-90" />
                 </div>
             </div>
         </section>
