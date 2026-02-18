@@ -7,7 +7,7 @@ import Image from "next/image";
 export default function Projects() {
     const projects = [
         {
-            title: "Social Distancing Monitor",
+            title: "SocialSense AI",
             description: "Real-time computer vision system utilizing surveillance feeds to detect and alert social distancing violations. Built for public safety protocols.",
             tech: ["OpenCV", "Python", "YOLOv5"],
             color: "from-red-500 to-orange-500",

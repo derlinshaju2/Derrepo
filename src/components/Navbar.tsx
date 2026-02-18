@@ -62,7 +62,7 @@ export default function Navbar() {
                     <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20">
                         <Zap size={20} className="text-white" />
                     </div>
-                    <span className="hidden sm:block">SocialSense AI</span>
+                    <span className="hidden sm:block">Derlin Shaju</span>
                 </a>
 
                 {/* Desktop Menu */}
